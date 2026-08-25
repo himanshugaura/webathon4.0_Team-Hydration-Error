@@ -33,8 +33,7 @@ export function Navbar() {
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "Events", href: "/events" },
-    { name: "About", href: "/about" },
-
+    { name: "Dashboard", href: "/dashboard" },
     { name: "Portal", href: "/login" },
   ];
 
