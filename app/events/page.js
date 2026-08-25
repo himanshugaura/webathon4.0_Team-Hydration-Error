@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Calendar, Clock, MapPin, Trophy, ArrowRight, Tag, Search, Users } from "lucide-react";
 import { data } from "@/lib/data";
 import { MagicCard } from "@/components/ui/magic-card";
+import { MeshDriftBackground } from "@/components/ui/mesh-drift-background";
 
 // Helper function to assign styling and imagery based on category
 const getEventStyles = (category) => {
@@ -114,7 +115,13 @@ export default function EventsPage() {
   });
 
   return (
-    <div className="min-h-screen text-zinc-900 dark:text-zinc-100">
+    <div className="relative min-h-screen text-zinc-900 dark:text-zinc-100 overflow-hidden">
+      {/* Animated WebGL Shader Background */}
+      <MeshDriftBackground 
+        className="opacity-40 dark:opacity-65 transition-opacity duration-700" 
+        grain={0.015} 
+      />
+
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
         
         {/* Header */}

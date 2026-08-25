@@ -16,6 +16,7 @@ import {
 import { data } from "@/lib/data";
 import { ShimmerButton } from "@/components/ui/shimmer-button";
 import { MagicCard } from "@/components/ui/magic-card";
+import { MeshDriftBackground } from "@/components/ui/mesh-drift-background";
 
 // Helper function to resolve high-res event image or poster
 function getEventVisual(event) {
@@ -118,8 +119,14 @@ export default async function EventDetailPage({ params }) {
       : "Certificate";
 
   return (
-    <div className="min-h-screen text-zinc-900 dark:text-zinc-100 transition-colors duration-500">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-20">
+    <div className="relative min-h-screen text-zinc-900 dark:text-zinc-100 transition-colors duration-500 overflow-hidden">
+      {/* Animated WebGL Shader Background */}
+      <MeshDriftBackground 
+        className="opacity-40 dark:opacity-65 transition-opacity duration-700" 
+        grain={0.015} 
+      />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-20">
         
         {/* Back Link */}
         <div className="mb-8">
