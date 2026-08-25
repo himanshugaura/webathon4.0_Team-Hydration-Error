@@ -45,8 +45,8 @@ export function Navbar() {
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-white/80 dark:bg-black/80 backdrop-blur-xl border-b border-black/5 dark:border-white/10 shadow-sm"
-          : "bg-transparent"
+          ? "bg-white/40 dark:bg-black/50 backdrop-blur-2xl border-b border-black/[0.06] dark:border-white/[0.08] shadow-sm"
+          : "bg-white/15 dark:bg-black/20 backdrop-blur-xl border-b border-black/[0.03] dark:border-white/[0.04]"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -65,7 +65,7 @@ export function Navbar() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-1 bg-white/40 dark:bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full border border-black/10 dark:border-white/10">
+          <nav className="hidden md:flex items-center gap-1 bg-white/30 dark:bg-black/30 backdrop-blur-2xl px-3 py-1.5 rounded-full border border-black/10 dark:border-white/10 shadow-sm">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
@@ -82,7 +82,7 @@ export function Navbar() {
           <div className="hidden md:flex items-center gap-4">
             <button
               onClick={toggleTheme}
-              className="p-2.5 rounded-full bg-white/40 dark:bg-black/40 backdrop-blur-md border border-black/10 dark:border-white/10 text-zinc-800 dark:text-zinc-200 hover:text-[#EB7D00] hover:bg-[#2C5745]/10 dark:hover:bg-[#EB7D00]/10 transition-all duration-300 cursor-pointer"
+              className="p-2.5 rounded-full bg-white/30 dark:bg-black/30 backdrop-blur-2xl border border-black/10 dark:border-white/10 text-zinc-800 dark:text-zinc-200 hover:text-[#EB7D00] hover:bg-[#2C5745]/10 dark:hover:bg-[#EB7D00]/10 transition-all duration-300 cursor-pointer shadow-sm"
               aria-label="Toggle Theme"
             >
               {mounted && theme === "dark" ? (

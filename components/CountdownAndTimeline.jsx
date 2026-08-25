@@ -15,7 +15,7 @@ const tagColors = {
 
 function ScheduleCard({ time, title, description, venue, tags }) {
   return (
-    <div className="flex gap-4 items-start p-4 rounded-xl bg-zinc-50 dark:bg-zinc-900/60 border border-zinc-200 dark:border-zinc-800 hover:border-[#EB7D00]/50 transition-colors group">
+    <div className="flex gap-4 items-start p-4 sm:p-5 rounded-2xl bg-white/40 dark:bg-zinc-900/50 backdrop-blur-xl border border-black/8 dark:border-white/10 hover:border-[#EB7D00]/50 hover:bg-white/60 dark:hover:bg-zinc-900/70 shadow-sm transition-all duration-300 group">
       {/* Time pill */}
       <div className="shrink-0 text-xs font-bold tabular-nums text-[#2C5745] dark:text-[#EB7D00] bg-[#2C5745]/10 dark:bg-[#EB7D00]/10 border border-[#2C5745]/20 dark:border-[#EB7D00]/20 rounded-lg px-2.5 py-1.5 mt-0.5 leading-tight text-center min-w-[70px]">
         {time}
