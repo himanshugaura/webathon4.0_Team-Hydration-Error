@@ -675,8 +675,8 @@ export function RobotHero({
       }
     : {
         fondoArriba: "#cecbcb",
-        fondoMedio:  "#9a9a9a",
-        fondoAbajo:  "#bebebe",
+        fondoMedio:  "#cecbcb",
+        fondoAbajo:  "#cecbcb",
         luzAmbiente: 0.75,
         luzPrincipal: 0.0,
         luzPrincipalColor: "#00ffe2",
@@ -715,7 +715,7 @@ export function RobotHero({
 
       <div className="absolute inset-0 z-10">
         <Canvas shadows camera={{ position: [0, 0.2, 6], fov: 40 }}>
-          <ambientLight intensity={entorno.luzAmbiente} color="#ffffff" />
+          <ambientLight intensity={entorno.luzAmbiente} x color="#ffffff" />
 
           <directionalLight
             position={[0, 6, 3]}
