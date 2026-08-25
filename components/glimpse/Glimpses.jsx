@@ -8,18 +8,26 @@ import { data } from "@/lib/data";
 
 // All real images from /public/Raw Images
 const images = [
+  // Hackathon
   { src: "/Raw Images/Hackathon/20260418_095451.jpg", alt: "Hackathon at NIRVAN – teams building live" },
   { src: "/Raw Images/Hackathon/20260418_110744.jpg", alt: "Collaboration and chaos — the hackathon spirit" },
   { src: "/Raw Images/Hackathon/20260418_121550.jpg", alt: "Final hours of the overnight marathon" },
-  { src: "/Raw Images/ctf/DSC_9762.JPG",              alt: "CTF CyberQuest — cracking the code" },
-  { src: "/Raw Images/ctf/DSC_9778.JPG",              alt: "Flags captured, glory earned" },
-  { src: "/Raw Images/ctf/DSC_9802.JPG",              alt: "NIRVAN CTF — proving your skills" },
+  
+  // CTF (renamed to img1-6)
+  { src: "/Raw Images/ctf/img1 (1).jpg",              alt: "CTF CyberQuest — cracking the code" },
+  { src: "/Raw Images/ctf/img2.jpg",                  alt: "Flags captured, glory earned" },
+  { src: "/Raw Images/ctf/img3.jpg",                  alt: "NIRVAN CTF — proving your skills" },
+  { src: "/Raw Images/ctf/img4.jpg",                  alt: "Cybersecurity challenge underway" },
+  
+  // E-Sports
   { src: "/Raw Images/esport/DSC08158.JPG",           alt: "E-Sports Arena — game on" },
   { src: "/Raw Images/esport/DSC_9816.JPG",           alt: "The crowd roars at E-Sports Arena" },
   { src: "/Raw Images/esport/IMG_7419.JPG",           alt: "Championship moments at E-Sports Arena" },
-  { src: "/Raw Images/tech treasure hunt/DSC_0090.JPG", alt: "Treasure Hunt — follow the clues" },
-  { src: "/Raw Images/tech treasure hunt/DSC_0111.JPG", alt: "Team coordination at Treasure Hunt" },
-  { src: "/Raw Images/tech treasure hunt/DSC_0130.JPG", alt: "The thrill of the hunt — NIRVAN style" },
+  
+  // Tech Treasure Hunt (updated folder & filenames)
+  { src: "/Raw Images/tech treasyre hunt/DSC_0090.jpg", alt: "Treasure Hunt — follow the clues" },
+  { src: "/Raw Images/tech treasyre hunt/DSC_0111.jpg", alt: "Team coordination at Treasure Hunt" },
+  { src: "/Raw Images/tech treasyre hunt/DSC_0130.jpg", alt: "The thrill of the hunt — NIRVAN style" },
 ];
 
 const stats = [
