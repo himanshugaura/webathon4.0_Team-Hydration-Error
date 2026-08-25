@@ -273,7 +273,6 @@ const CATEGORIES = [
 export default function GalleryPage() {
   const [selectedCategory, setSelectedCategory] = useState("All Moments");
   const [activeLightboxIndex, setActiveLightboxIndex] = useState(null);
-  const [viewMode, setViewMode] = useState("grid"); // 'grid' | 'polaroid'
   const [likedIds, setLikedIds] = useState([]);
 
   const filteredItems = GALLERY_ITEMS.filter((item) => {
@@ -324,175 +323,101 @@ export default function GalleryPage() {
             A retrospective view of previous iterations of the technical fest, capturing moments of innovation, collaboration, late-night breakthroughs, and structural ingenuity.
           </p>
 
-          {/* View Mode & Category Controls */}
-          <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-black/10 dark:border-white/10">
-            
-            {/* Category Filter Pills */}
-            <div className="flex items-center flex-wrap gap-2">
-              {CATEGORIES.map((cat) => {
-                const isSelected = selectedCategory === cat;
-                return (
-                  <button
-                    key={cat}
-                    onClick={() => setSelectedCategory(cat)}
-                    className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all ${
-                      isSelected
-                        ? "bg-[#52796f] text-white shadow-sm font-semibold"
-                        : "bg-white/60 dark:bg-[#15231c]/70 text-[#2f3e46] dark:text-[#cad2c5] border border-black/5 dark:border-white/5 hover:border-[#84a98c]/40"
-                    }`}
-                  >
-                    {cat}
-                  </button>
-                );
-              })}
-            </div>
-
-            {/* View Mode Switcher: Clean Grid vs Scrapbook Polaroid */}
-            <div className="flex p-1 bg-black/5 dark:bg-black/40 rounded-2xl border border-black/5 dark:border-white/5">
-              <button
-                type="button"
-                onClick={() => setViewMode("grid")}
-                className={`px-3 py-1 rounded-xl text-xs font-semibold transition-all ${
-                  viewMode === "grid"
-                    ? "bg-[#52796f] text-white shadow-sm"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                Gallery Grid
-              </button>
-              <button
-                type="button"
-                onClick={() => setViewMode("polaroid")}
-                className={`px-3 py-1 rounded-xl text-xs font-semibold transition-all ${
-                  viewMode === "polaroid"
-                    ? "bg-[#52796f] text-white shadow-sm"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                Polaroid Storybook
-              </button>
-            </div>
+          {/* Category Filter Pills */}
+          <div className="flex items-center justify-center flex-wrap gap-2 pt-4 border-t border-black/10 dark:border-white/10">
+            {CATEGORIES.map((cat) => {
+              const isSelected = selectedCategory === cat;
+              return (
+                <button
+                  key={cat}
+                  onClick={() => setSelectedCategory(cat)}
+                  className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all cursor-pointer ${
+                    isSelected
+                      ? "bg-[#2C5745] text-white shadow-sm font-semibold"
+                      : "bg-white/60 dark:bg-[#15231c]/70 text-[#2f3e46] dark:text-[#cad2c5] border border-black/5 dark:border-white/5 hover:border-[#84a98c]/40"
+                  }`}
+                >
+                  {cat}
+                </button>
+              );
+            })}
           </div>
         </div>
 
         {/* =========================================================
-            PHOTO GALLERY GRID / MASONRY
+            PHOTO GALLERY GRID
            ========================================================= */}
-        {viewMode === "grid" ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredItems.map((item, index) => {
-              const isLiked = likedIds.includes(item.id);
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredItems.map((item, index) => {
+            const isLiked = likedIds.includes(item.id);
 
-              return (
-                <motion.div
-                  key={item.id}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.4, delay: index * 0.04 }}
-                  onClick={() => setActiveLightboxIndex(index)}
-                  className="group relative rounded-3xl overflow-hidden cursor-pointer backdrop-blur-2xl bg-white/70 dark:bg-[#15231c]/80 border border-white/60 dark:border-[#84a98c]/25 shadow-md hover:shadow-xl transition-all hover:-translate-y-1"
-                >
-                  {/* Photo Container */}
-                  <div className="relative aspect-[4/3] w-full overflow-hidden bg-black/10 dark:bg-black/40">
-                    <img
-                      src={item.src}
-                      alt={item.title}
-                      className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                      loading="lazy"
-                    />
+            return (
+              <motion.div
+                key={item.id}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4, delay: index * 0.04 }}
+                onClick={() => setActiveLightboxIndex(index)}
+                className="group relative rounded-3xl overflow-hidden cursor-pointer backdrop-blur-2xl bg-white/70 dark:bg-[#15231c]/80 border border-white/60 dark:border-[#84a98c]/25 shadow-md hover:shadow-xl transition-all hover:-translate-y-1"
+              >
+                {/* Photo Container */}
+                <div className="relative aspect-[4/3] w-full overflow-hidden bg-black/10 dark:bg-black/40">
+                  <img
+                    src={item.src}
+                    alt={item.title}
+                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    loading="lazy"
+                  />
 
-                    {/* Gradient Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-                    {/* Top Badges */}
-                    <div className="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none">
-                      <span className="px-2.5 py-1 rounded-full text-[10px] font-mono font-bold bg-black/60 backdrop-blur-md text-white border border-white/20">
-                        {item.year}
-                      </span>
+                  {/* Top Badges */}
+                  <div className="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none">
+                    <span className="px-2.5 py-1 rounded-full text-[10px] font-mono font-bold bg-black/60 backdrop-blur-md text-white border border-white/20">
+                      {item.year}
+                    </span>
 
-                      <button
-                        type="button"
-                        onClick={(e) => toggleLike(item.id, e)}
-                        className={`p-2 rounded-full backdrop-blur-md transition-all pointer-events-auto ${
-                          isLiked
-                            ? "bg-rose-500 text-white shadow-md"
-                            : "bg-black/50 text-white/80 hover:bg-black/70 hover:text-white"
-                        }`}
-                      >
-                        <Heart className="w-3.5 h-3.5 fill-current" />
-                      </button>
-                    </div>
-
-                    {/* Hover Inspect Icon */}
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                      <span className="p-3 rounded-full bg-white/20 backdrop-blur-md text-white border border-white/30 shadow-lg">
-                        <Maximize2 className="w-5 h-5" />
-                      </span>
-                    </div>
+                    <button
+                      type="button"
+                      onClick={(e) => toggleLike(item.id, e)}
+                      className={`p-2 rounded-full backdrop-blur-md transition-all pointer-events-auto cursor-pointer ${
+                        isLiked
+                          ? "bg-rose-500 text-white shadow-md"
+                          : "bg-black/50 text-white/80 hover:bg-black/70 hover:text-white"
+                      }`}
+                    >
+                      <Heart className="w-3.5 h-3.5 fill-current" />
+                    </button>
                   </div>
 
-                  {/* Caption Card Body */}
-                  <div className="p-4 sm:p-5 space-y-1.5">
-                    <div className="flex items-center justify-between text-[11px] font-mono text-[#52796f] dark:text-[#84a98c]">
-                      <span>{item.category}</span>
-                      <span>{item.location}</span>
-                    </div>
-
-                    <h3 className="text-base font-bold text-[#2f3e46] dark:text-white group-hover:text-[#52796f] dark:group-hover:text-[#84a98c] transition-colors line-clamp-1">
-                      {item.title}
-                    </h3>
-
-                    <p className="text-xs text-muted-foreground line-clamp-2 leading-relaxed">
-                      {item.caption}
-                    </p>
+                  {/* Hover Inspect Icon */}
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                    <span className="p-3 rounded-full bg-white/20 backdrop-blur-md text-white border border-white/30 shadow-lg">
+                      <Maximize2 className="w-5 h-5" />
+                    </span>
                   </div>
-                </motion.div>
-              );
-            })}
-          </div>
-        ) : (
-          /* =========================================================
-              POLAROID / SCRAPBOOK STORYBOOK MODE
-             ========================================================= */
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
-            {filteredItems.map((item, index) => {
-              const rotation = (index % 5 - 2) * 2; // Subtle natural tilt: -4, -2, 0, 2, 4 deg
+                </div>
 
-              return (
-                <motion.div
-                  key={item.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: index * 0.05 }}
-                  onClick={() => setActiveLightboxIndex(index)}
-                  style={{ transform: `rotate(${rotation}deg)` }}
-                  className="group bg-white dark:bg-[#1a2e1a] p-4 sm:p-5 rounded-2xl shadow-lg border border-black/10 dark:border-white/10 hover:rotate-0 hover:scale-105 hover:z-20 transition-all duration-300 cursor-pointer space-y-3"
-                >
-                  <div className="aspect-[4/3] w-full overflow-hidden rounded-xl bg-black/10 dark:bg-black/40">
-                    <img
-                      src={item.src}
-                      alt={item.title}
-                      className="w-full h-full object-cover"
-                    />
+                {/* Caption Card Body */}
+                <div className="p-4 sm:p-5 space-y-1.5">
+                  <div className="flex items-center justify-between text-[11px] font-mono text-[#52796f] dark:text-[#84a98c]">
+                    <span>{item.category}</span>
+                    <span>{item.location}</span>
                   </div>
 
-                  <div className="space-y-1 px-1">
-                    <div className="flex items-center justify-between text-[11px] font-mono text-[#52796f] dark:text-[#84a98c]">
-                      <span>📌 {item.year}</span>
-                      <span>{item.category}</span>
-                    </div>
-                    <h4 className="text-sm font-bold text-[#2f3e46] dark:text-white">
-                      {item.title}
-                    </h4>
-                    <p className="text-xs italic text-muted-foreground leading-snug">
-                      "{item.caption}"
-                    </p>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
-        )}
+                  <h3 className="text-base font-bold text-[#2f3e46] dark:text-white group-hover:text-[#52796f] dark:group-hover:text-[#84a98c] transition-colors line-clamp-1">
+                    {item.title}
+                  </h3>
+
+                  <p className="text-xs text-muted-foreground line-clamp-2 leading-relaxed">
+                    {item.caption}
+                  </p>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
 
         {/* =========================================================
             FULLSCREEN LIGHTBOX MODAL
