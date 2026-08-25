@@ -3,6 +3,7 @@ import "./globals.css";
 
 import { ThemeProvider } from "@/components/theme-provider";
 import { Navbar } from "@/components/Navbar";
+import Background from "@/components/ui/background";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,12 +27,13 @@ export default function RootLayout({ children }) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col transition-colors duration-300">
+      <body className="min-h-full flex flex-col transition-colors duration-300 relative">
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
           enableSystem
         >
+          <Background />
           <Navbar />
           <main className="flex-1">
             {children}

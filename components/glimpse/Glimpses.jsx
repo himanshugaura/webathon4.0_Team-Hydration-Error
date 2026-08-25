@@ -30,12 +30,6 @@ const images = [
   { src: "/Raw Images/tech treasyre hunt/DSC_0130.jpg", alt: "The thrill of the hunt — NIRVAN style" },
 ];
 
-const stats = [
-  { value: "500+", label: "Participants" },
-  { value: "9",    label: "Events" },
-  { value: "₹1L+", label: "Prize Pool" },
-  { value: "3",    label: "Days of Glory" },
-];
 
 export function Glimpses() {
   const { resolvedTheme } = useTheme();
@@ -50,11 +44,8 @@ export function Glimpses() {
       {/* ── Countdown ── */}
       <div className="max-w-7xl mx-auto px-4 pt-16 pb-6">
         <div className="flex flex-col items-center text-center mb-8 space-y-3">
-          <span className="inline-block rounded-full border border-[#00a896]/60 bg-[#00ffc6]/10 px-5 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#007a70] dark:text-[#00ffc6]">
-            Mark Your Calendar
-          </span>
           <h2 className="text-4xl md:text-5xl font-black text-zinc-900 dark:text-white">
-            {data.fest.name} <span className="text-[#007a70] dark:text-[#00ffc6]">Starts In</span>
+            {data.fest.name} <span className="text-[#EB7D00]">Starts In</span>
           </h2>
           <p className="text-zinc-600 dark:text-zinc-400 text-base">
             {data.fest.dates.display} · {data.fest.venue}
@@ -74,12 +65,9 @@ export function Glimpses() {
 
       {/* ── Heading above carousel ── */}
       <div className="relative z-10 flex flex-col items-center text-center px-4 pb-8">
-        <span className="mb-4 inline-block rounded-full border border-[#00a896]/60 bg-[#00ffc6]/10 px-5 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#007a70] dark:text-[#00ffc6]">
-          You had to be there
-        </span>
         <h2 className="max-w-4xl text-4xl font-black leading-tight text-zinc-800 dark:text-white sm:text-5xl">
           The Legacy of{" "}
-          <span className="bg-gradient-to-r from-[#007a70] to-teal-600 dark:from-[#00ffc6] dark:to-teal-300 bg-clip-text text-transparent">
+          <span className="text-[#2C5745] dark:text-[#EB7D00]">
             Previous NIRVANs
           </span>
         </h2>
@@ -87,20 +75,6 @@ export function Glimpses() {
           From overnight hackathons to robot battles — every edition of NIRVAN
           has been a story worth telling.
         </p>
-
-        {/* Stats */}
-        <div className="mt-8 flex flex-wrap justify-center gap-10 sm:gap-14">
-          {stats.map(({ value, label }) => (
-            <div key={label} className="flex flex-col items-center">
-              <span className="text-3xl font-black text-[#007a70] dark:text-[#00ffc6] sm:text-4xl">
-                {value}
-              </span>
-              <span className="mt-1 text-xs font-semibold uppercase tracking-widest text-zinc-500 dark:text-zinc-400">
-                {label}
-              </span>
-            </div>
-          ))}
-        </div>
       </div>
 
       {/* ── Carousel — 6 cards, no gradient overlays ── */}

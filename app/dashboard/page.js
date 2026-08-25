@@ -2,160 +2,150 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import {
-  User,
-  GraduationCap,
-  Building2,
-  Calendar,
-  Clock,
-  MapPin,
-  Trophy,
-  Users,
-  UserPlus,
-  QrCode,
-  Download,
-  Share2,
-  Copy,
-  Check,
-  ArrowRight,
-  Sparkles,
-  ShieldCheck,
-  CheckCircle2,
-  Send,
+import { 
+  Building2, 
+  Calendar, 
+  Clock, 
+  MapPin, 
+  Trophy, 
+  Users, 
+  QrCode, 
+  UserPlus, 
+  Copy, 
+  Check, 
+  Download, 
   ExternalLink,
-  Layers,
-  Award,
-  ChevronRight
+  ArrowRight,
+  ShieldCheck,
+  Send,
+  Share2
 } from "lucide-react";
 import { data } from "@/lib/data";
+import { ShimmerButton } from "@/components/ui/shimmer-button";
+import { MagicCard } from "@/components/ui/magic-card";
 
-// Mock student profile data
+// Mock Logged In Student Profile
 const mockStudent = {
   name: "Aryan Raj",
-  email: "aryan.raj@gehu.ac.in",
   studentId: "GEHU/2023/1084",
+  email: "aryan.raj@gehu.ac.in",
   campus: "GEHU - Haldwani Campus",
   course: "B.Tech Computer Science & Engineering",
   section: "Section A (3rd Year)",
-  phone: "+91 98765 43210",
-  avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=600&auto=format&fit=crop"
+  mobile: "+91 98765 43210",
+  avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=300&auto=format&fit=crop"
 };
 
-// Mock participated events data
+// Mock Participated Events Data
 const mockParticipatedEvents = [
   {
-    id: "hackathon",
+    id: "hacksprint-2026",
     slug: "hacksprint",
-    name: "HackSprint",
+    name: "HackSprint '26",
     category: "Hackathon",
-    tag: "TECH",
+    date: "Oct 24, 2026",
+    time: "10:00 AM",
+    venue: "Main Computing Lab, Block A",
+    status: "Confirmed",
     role: "Team Leader",
     teamName: "CodeCraft Squad",
-    status: "Confirmed",
-    date: "Oct 25, 2026",
-    time: "18:00 (12 Hours)",
-    venue: "Innovation Hub",
-    prizePool: "₹30,000",
-    teamSize: "3 / 4 Members",
+    teamSize: "4 Members",
     teamCode: "NIRVAN-HACK-8492",
+    prizePool: "₹25,000",
+    passToken: "GEHU-HACK-PASS-99321",
     members: [
-      { name: "Aryan Raj", role: "Leader (You)", status: "Active" },
-      { name: "Priyanshu Sharma", role: "Frontend Developer", status: "Active" },
-      { name: "Sneha Bisht", role: "UI/UX Designer", status: "Active" },
-    ],
-    passToken: "NIRVAN26-HACK-PASS-9081"
+      { name: "Aryan Raj", role: "Team Leader", email: "aryan.raj@gehu.ac.in" },
+      { name: "Sneha Sharma", role: "Frontend Dev", email: "sneha.s@gehu.ac.in" },
+      { name: "Rohan Verma", role: "Backend Dev", email: "rohan.v@gehu.ac.in" },
+      { name: "Ananya Joshi", role: "UI Designer", email: "ananya.j@gehu.ac.in" }
+    ]
   },
   {
-    id: "coding",
+    id: "coderush-2026",
     slug: "coderush",
-    name: "CodeRush",
+    name: "CodeRush: Algorithmic Duel",
     category: "Competitive Programming",
-    tag: "TECH",
-    role: "Solo Participant",
-    teamName: "Individual",
-    status: "Confirmed",
     date: "Oct 25, 2026",
-    time: "10:00 (3 Hours)",
-    venue: "Computer Lab 1",
-    prizePool: "₹15,000",
-    teamSize: "Solo (1)",
+    time: "02:00 PM",
+    venue: "Turing Auditorium, Block B",
+    status: "Confirmed",
+    role: "Solo Participant",
+    teamName: "Solo",
+    teamSize: "1 Person",
     teamCode: null,
+    prizePool: "₹12,000",
+    passToken: "GEHU-CODE-PASS-44120",
     members: [
-      { name: "Aryan Raj", role: "Competitor (You)", status: "Active" }
-    ],
-    passToken: "NIRVAN26-CODE-PASS-4412"
+      { name: "Aryan Raj", role: "Solo Contestant", email: "aryan.raj@gehu.ac.in" }
+    ]
   },
   {
-    id: "ctf",
-    slug: "ctf-cyberquest",
-    name: "CTF: CyberQuest",
-    category: "Cybersecurity",
-    tag: "TECH",
-    role: "Team Member",
-    teamName: "ZeroDay Hunters",
+    id: "robowar-2026",
+    slug: "robowar",
+    name: "RoboWar: Clash of Bots",
+    category: "Robotics",
+    date: "Oct 26, 2026",
+    time: "11:00 AM",
+    venue: "Open Air Amphitheatre",
     status: "Confirmed",
-    date: "Oct 25, 2026",
-    time: "16:00 (3 Hours)",
-    venue: "Open Ground",
-    prizePool: "₹12,000",
-    teamSize: "2 / 3 Members",
-    teamCode: "NIRVAN-CTF-3190",
+    role: "Team Member",
+    teamName: "Titan Mech",
+    teamSize: "3 Members",
+    teamCode: "NIRVAN-ROBO-1904",
+    prizePool: "₹20,000",
+    passToken: "GEHU-ROBO-PASS-78219",
     members: [
-      { name: "Kavya Joshi", role: "Team Leader", status: "Active" },
-      { name: "Aryan Raj", role: "Security Analyst (You)", status: "Active" }
-    ],
-    passToken: "NIRVAN26-CTF-PASS-7821"
+      { name: "Vikram Negi", role: "Team Leader", email: "vikram.n@gehu.ac.in" },
+      { name: "Aryan Raj", role: "Bot Pilot", email: "aryan.raj@gehu.ac.in" },
+      { name: "Karan Bisht", role: "Hardware Eng", email: "karan.b@gehu.ac.in" }
+    ]
   }
 ];
 
-export default function DashboardPage() {
-  const [activeTab, setActiveTab] = useState("all"); // 'all' | 'team' | 'solo'
-  const [selectedInviteEvent, setSelectedInviteEvent] = useState(null);
+export default function StudentDashboard() {
+  const [activeTab, setActiveTab] = useState("all");
   const [selectedPassEvent, setSelectedPassEvent] = useState(null);
+  const [selectedInviteEvent, setSelectedInviteEvent] = useState(null);
   const [inviteEmail, setInviteEmail] = useState("");
-  const [inviteSuccess, setInviteSuccess] = useState(false);
+  const [invitedList, setInvitedList] = useState([]);
   const [copiedCode, setCopiedCode] = useState(false);
 
-  // Filter events
   const filteredEvents = mockParticipatedEvents.filter((ev) => {
     if (activeTab === "team") return ev.role.includes("Team");
     if (activeTab === "solo") return ev.role.includes("Solo");
     return true;
   });
 
-  const handleSendInvite = (e) => {
-    e.preventDefault();
-    if (!inviteEmail) return;
-    setInviteSuccess(true);
-    setTimeout(() => {
-      setInviteEmail("");
-      setInviteSuccess(false);
-    }, 2500);
-  };
-
-  const handleCopy = (text) => {
-    navigator.clipboard?.writeText(text);
+  const handleCopyCode = (code) => {
+    navigator.clipboard?.writeText(code);
     setCopiedCode(true);
     setTimeout(() => setCopiedCode(false), 2000);
+  };
+
+  const handleSendInvite = (e) => {
+    e.preventDefault();
+    if (!inviteEmail.trim()) return;
+    setInvitedList((prev) => [...prev, inviteEmail.trim()]);
+    setInviteEmail("");
   };
 
   return (
     <div className="min-h-screen text-zinc-900 dark:text-zinc-100 transition-colors duration-500">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-20">
         
-        {/* Profile & Welcome Header Card */}
-        <div className="rounded-3xl backdrop-blur-xl bg-white/70 dark:bg-zinc-900/70 border border-zinc-300/70 dark:border-zinc-800/80 p-6 sm:p-8 shadow-sm mb-8">
+        {/* Profile Card */}
+        <MagicCard className="rounded-3xl p-6 sm:p-10 shadow-sm mb-10">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
             
             {/* Student Info */}
             <div className="flex items-center gap-5">
-              <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden border-2 border-[#00ffc6]/40 shadow-md shrink-0">
+              <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden border-2 border-[#2C5745]/40 shadow-md shrink-0">
                 <img
                   src={mockStudent.avatar}
                   alt={mockStudent.name}
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute bottom-1 right-1 w-3.5 h-3.5 rounded-full bg-emerald-500 border-2 border-white dark:border-black" />
+                <div className="absolute bottom-1 right-1 w-3.5 h-3.5 rounded-full bg-[#2C5745] border-2 border-white dark:border-black" />
               </div>
 
               <div className="space-y-1">
@@ -172,7 +162,7 @@ export default function DashboardPage() {
                 </p>
 
                 <p className="text-xs text-zinc-500 dark:text-zinc-400 flex items-center gap-1.5 pt-0.5">
-                  <Building2 className="w-3.5 h-3.5 text-[#007a70] dark:text-[#00ffc6]" />
+                  <Building2 className="w-3.5 h-3.5 text-[#2C5745] dark:text-[#EB7D00]" />
                   <span>{mockStudent.campus}</span>
                 </p>
               </div>
@@ -180,16 +170,19 @@ export default function DashboardPage() {
 
             {/* Quick Action Link to Explore More */}
             <div className="flex flex-wrap items-center gap-3">
-              <Link
-                href="/events"
-                className="px-5 py-3 rounded-xl bg-zinc-900 hover:bg-black dark:bg-white dark:hover:bg-zinc-200 text-white dark:text-zinc-950 font-bold text-xs sm:text-sm shadow-md transition-all flex items-center gap-2 cursor-pointer"
-              >
-                <span>Browse More Events</span>
-                <ArrowRight className="w-4 h-4" />
+              <Link href="/events">
+                <ShimmerButton
+                  background="#2C5745"
+                  shimmerColor="#EB7D00"
+                  className="px-5 py-3 rounded-xl text-white font-bold text-xs sm:text-sm shadow-md transition-all flex items-center gap-2 cursor-pointer"
+                >
+                  <span>Browse More Events</span>
+                  <ArrowRight className="w-4 h-4" />
+                </ShimmerButton>
               </Link>
             </div>
           </div>
-        </div>
+        </MagicCard>
 
         {/* Main Section: My Participated Events */}
         <div className="space-y-6">
@@ -246,9 +239,9 @@ export default function DashboardPage() {
               const isTeam = ev.role.includes("Team");
               
               return (
-                <div
+                <MagicCard
                   key={ev.id}
-                  className="rounded-3xl backdrop-blur-xl bg-white/70 dark:bg-zinc-900/70 border border-zinc-300/70 dark:border-zinc-800/80 p-6 sm:p-8 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between space-y-6"
+                  className="rounded-3xl p-6 sm:p-8 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between space-y-6"
                 >
                   <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-zinc-200/80 dark:border-zinc-800/80 pb-5">
                     <div className="space-y-1.5">
@@ -256,10 +249,10 @@ export default function DashboardPage() {
                         <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wide bg-zinc-200 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200">
                           {ev.category}
                         </span>
-                        <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wide bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+                        <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wide bg-[#2C5745]/15 text-[#2C5745] dark:text-[#EB7D00] border border-[#2C5745]/20">
                           {ev.status}
                         </span>
-                        <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wide bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20">
+                        <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wide bg-[#AE2448]/15 text-[#AE2448] border border-[#AE2448]/20">
                           {ev.role}
                         </span>
                       </div>
@@ -269,7 +262,7 @@ export default function DashboardPage() {
                       </h3>
                       
                       {isTeam && (
-                        <p className="text-xs font-semibold text-[#007a70] dark:text-[#00ffc6]">
+                        <p className="text-xs font-semibold text-[#2C5745] dark:text-[#EB7D00]">
                           Team: {ev.teamName} ({ev.teamSize})
                         </p>
                       )}
@@ -280,9 +273,9 @@ export default function DashboardPage() {
                       {isTeam && (
                         <button
                           onClick={() => setSelectedInviteEvent(ev)}
-                          className="px-4 py-2.5 rounded-xl bg-[#52796f]/15 dark:bg-[#84a98c]/20 hover:bg-[#52796f]/25 text-[#2f3e46] dark:text-[#cad2c5] font-bold text-xs border border-[#52796f]/30 transition-all flex items-center gap-1.5 cursor-pointer shadow-sm"
+                          className="px-4 py-2.5 rounded-xl bg-[#2C5745]/15 dark:bg-[#EB7D00]/15 hover:bg-[#2C5745]/25 text-[#2C5745] dark:text-[#EB7D00] font-bold text-xs border border-[#2C5745]/30 dark:border-[#EB7D00]/30 transition-all flex items-center gap-1.5 cursor-pointer shadow-sm"
                         >
-                          <UserPlus className="w-3.5 h-3.5 text-[#007a70] dark:text-[#00ffc6]" />
+                          <UserPlus className="w-3.5 h-3.5" />
                           <span>Invite Teammates</span>
                         </button>
                       )}
@@ -319,7 +312,7 @@ export default function DashboardPage() {
 
                     <div>
                       <span className="block text-zinc-500 dark:text-zinc-400 font-medium mb-0.5">Prize Pool</span>
-                      <span className="font-black text-[#007a70] dark:text-[#00ffc6]">{ev.prizePool}</span>
+                      <span className="font-black text-[#2C5745] dark:text-[#EB7D00]">{ev.prizePool}</span>
                     </div>
 
                     <div>
@@ -340,7 +333,7 @@ export default function DashboardPage() {
                             key={i}
                             className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-zinc-100 dark:bg-zinc-800/80 border border-zinc-200 dark:border-zinc-700/60 text-xs font-semibold"
                           >
-                            <div className="w-5 h-5 rounded-full bg-[#52796f] text-white flex items-center justify-center text-[10px] font-bold">
+                            <div className="w-5 h-5 rounded-full bg-[#2C5745] text-white flex items-center justify-center text-[10px] font-bold">
                               {m.name.charAt(0)}
                             </div>
                             <span className="text-zinc-800 dark:text-zinc-200">{m.name}</span>
@@ -350,8 +343,7 @@ export default function DashboardPage() {
                       </div>
                     </div>
                   )}
-
-                </div>
+                </MagicCard>
               );
             })}
           </div>
@@ -360,15 +352,65 @@ export default function DashboardPage() {
 
       </div>
 
-      {/* Invite Teammates Modal */}
+      {/* Entry Pass Modal */}
+      {selectedPassEvent && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
+          <div className="w-full max-w-sm rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 p-6 sm:p-8 shadow-2xl space-y-6 text-center">
+            
+            <div className="flex justify-between items-center">
+              <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#2C5745] dark:text-[#EB7D00]">
+                NIRVAN '26 Entry Pass
+              </span>
+              <button
+                onClick={() => setSelectedPassEvent(null)}
+                className="text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200 font-bold text-sm cursor-pointer"
+              >
+                ✕
+              </button>
+            </div>
+
+            {/* Pass QR Box */}
+            <div className="p-6 rounded-2xl bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 flex flex-col items-center justify-center space-y-3">
+              <div className="w-36 h-36 bg-white p-2 rounded-xl border border-zinc-300 shadow-inner flex items-center justify-center">
+                <QrCode className="w-32 h-32 text-zinc-950" />
+              </div>
+              <span className="font-mono text-xs font-bold text-zinc-700 dark:text-zinc-300">
+                {selectedPassEvent.passToken}
+              </span>
+            </div>
+
+            <div className="space-y-1">
+              <h4 className="font-black text-xl text-zinc-900 dark:text-white">
+                {selectedPassEvent.name}
+              </h4>
+              <p className="text-xs text-zinc-600 dark:text-zinc-400 font-medium">
+                {mockStudent.name} • {mockStudent.studentId}
+              </p>
+              <p className="text-xs text-zinc-500 pt-1">
+                📍 {selectedPassEvent.venue} ({selectedPassEvent.date})
+              </p>
+            </div>
+
+            <button
+              onClick={() => setSelectedPassEvent(null)}
+              className="w-full py-3 rounded-xl bg-[#2C5745] hover:bg-[#234537] text-white font-bold text-xs cursor-pointer shadow-md"
+            >
+              Done / Close
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Team Invite Modal */}
       {selectedInviteEvent && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
           <div className="w-full max-w-md rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 p-6 sm:p-8 shadow-2xl space-y-5">
+            
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <UserPlus className="w-5 h-5 text-[#007a70] dark:text-[#00ffc6]" />
+                <UserPlus className="w-5 h-5 text-[#2C5745] dark:text-[#EB7D00]" />
                 <h3 className="text-lg font-bold text-zinc-900 dark:text-white">
-                  Invite to {selectedInviteEvent.name}
+                  Invite to {selectedInviteEvent.teamName}
                 </h3>
               </div>
               <button
@@ -380,53 +422,60 @@ export default function DashboardPage() {
             </div>
 
             <p className="text-xs text-zinc-600 dark:text-zinc-400">
-              Share your team invite code or send direct invites to teammates for team <span className="font-bold text-zinc-900 dark:text-white">{selectedInviteEvent.teamName}</span>.
+              Share your squad invite code or send an invite directly to your classmate&apos;s student email.
             </p>
 
-            {/* Copyable Team Code */}
-            <div className="p-3.5 rounded-2xl bg-zinc-100 dark:bg-zinc-800/80 border border-zinc-300 dark:border-zinc-700 space-y-2">
-              <span className="text-xs font-bold text-zinc-700 dark:text-zinc-300">Team Code:</span>
+            {/* Team Invite Code */}
+            <div className="p-3.5 rounded-2xl bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 space-y-2">
+              <span className="text-[11px] font-bold uppercase text-zinc-500">Squad Invite Code:</span>
               <div className="flex items-center gap-2">
-                <div className="flex-1 px-3 py-2 rounded-xl bg-white dark:bg-black/50 font-mono text-xs font-bold text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-800">
+                <div className="flex-1 px-3 py-2 rounded-xl bg-white dark:bg-zinc-900 font-mono text-sm font-bold text-zinc-900 dark:text-white border border-zinc-300 dark:border-zinc-700">
                   {selectedInviteEvent.teamCode}
                 </div>
                 <button
-                  onClick={() => handleCopy(selectedInviteEvent.teamCode)}
-                  className="px-3.5 py-2 rounded-xl bg-[#52796f] hover:bg-[#44655c] text-white text-xs font-bold flex items-center gap-1 cursor-pointer"
+                  onClick={() => handleCopyCode(selectedInviteEvent.teamCode)}
+                  className="px-4 py-2.5 rounded-xl bg-[#2C5745] hover:bg-[#234537] text-white text-xs font-bold flex items-center gap-1.5 cursor-pointer shadow-sm"
                 >
                   {copiedCode ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
-                  <span>{copiedCode ? "Copied" : "Copy"}</span>
+                  <span>{copiedCode ? "Copied" : "Copy Code"}</span>
                 </button>
               </div>
             </div>
 
-            {/* Email Invite Form */}
-            <form onSubmit={handleSendInvite} className="space-y-2 pt-2">
-              <label className="block text-xs font-bold uppercase text-zinc-500">Invite Teammate via Email</label>
+            {/* Email Dispatcher */}
+            <form onSubmit={handleSendInvite} className="space-y-2">
+              <label className="block text-xs font-bold uppercase text-zinc-500">Invite via Student Email / ID</label>
               <div className="flex gap-2">
                 <input
                   type="email"
-                  required
-                  placeholder="teammate@gehu.ac.in"
+                  placeholder="classmate@gehu.ac.in"
                   value={inviteEmail}
                   onChange={(e) => setInviteEmail(e.target.value)}
-                  className="flex-1 px-3.5 py-2.5 rounded-xl bg-zinc-100 dark:bg-black/50 border border-zinc-300 dark:border-zinc-700 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#00ffc6]"
+                  className="flex-1 px-3.5 py-2.5 rounded-xl bg-zinc-100 dark:bg-black/50 border border-zinc-300 dark:border-zinc-700 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#2C5745]"
                 />
                 <button
                   type="submit"
-                  className="px-4 py-2.5 rounded-xl bg-zinc-900 dark:bg-white text-white dark:text-black font-bold text-xs flex items-center gap-1.5 cursor-pointer"
+                  className="px-4 py-2.5 rounded-xl bg-[#2C5745] hover:bg-[#234537] text-white font-bold text-xs flex items-center gap-1.5 cursor-pointer"
                 >
                   <Send className="w-3.5 h-3.5" />
                   <span>Send</span>
                 </button>
               </div>
-              {inviteSuccess && (
-                <p className="text-[11px] font-semibold text-emerald-600 dark:text-emerald-400 flex items-center gap-1 pt-1">
-                  <CheckCircle2 className="w-3 h-3" />
-                  <span>Invitation dispatched successfully!</span>
-                </p>
-              )}
             </form>
+
+            {invitedList.length > 0 && (
+              <div className="space-y-1.5">
+                <span className="text-[11px] font-bold uppercase text-zinc-500">Dispatched Invites:</span>
+                <div className="space-y-1">
+                  {invitedList.map((m, idx) => (
+                    <div key={idx} className="flex items-center justify-between text-xs px-3 py-1.5 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300">
+                      <span>{m}</span>
+                      <span className="text-[10px] font-semibold text-[#EB7D00] bg-[#EB7D00]/10 px-2 py-0.5 rounded">Invited</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
 
             <button
               onClick={() => setSelectedInviteEvent(null)}
@@ -434,60 +483,6 @@ export default function DashboardPage() {
             >
               Done
             </button>
-          </div>
-        </div>
-      )}
-
-      {/* Digital Fest Pass Modal */}
-      {selectedPassEvent && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
-          <div className="w-full max-w-sm rounded-3xl bg-white dark:bg-zinc-900 border-2 border-zinc-300 dark:border-[#84a98c]/40 p-6 sm:p-8 shadow-2xl text-center space-y-5 relative overflow-hidden">
-            
-            {/* Top Pass Brand */}
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-black uppercase tracking-widest text-[#007a70] dark:text-[#00ffc6]">
-                NIRVAN '26 Entry Pass
-              </span>
-              <button
-                onClick={() => setSelectedPassEvent(null)}
-                className="text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200 text-sm font-bold cursor-pointer"
-              >
-                ✕
-              </button>
-            </div>
-
-            {/* QR Mock Code Box */}
-            <div className="w-44 h-44 mx-auto rounded-2xl bg-white p-3 border-2 border-zinc-300 dark:border-zinc-700 flex flex-col items-center justify-center shadow-inner">
-              {/* QR Pattern visual */}
-              <div className="w-full h-full border border-dashed border-zinc-400 flex flex-col items-center justify-center text-zinc-800 space-y-1">
-                <QrCode className="w-24 h-24 text-zinc-900" />
-                <span className="text-[9px] font-mono font-bold">{selectedPassEvent.passToken.slice(0, 16)}</span>
-              </div>
-            </div>
-
-            {/* Pass Meta */}
-            <div className="space-y-1">
-              <h4 className="text-xl font-black text-zinc-900 dark:text-white">
-                {selectedPassEvent.name}
-              </h4>
-              <p className="text-xs font-bold text-zinc-500 dark:text-zinc-400">
-                {mockStudent.name} • {mockStudent.studentId}
-              </p>
-              <p className="text-[11px] text-zinc-500">
-                {selectedPassEvent.date} · {selectedPassEvent.venue}
-              </p>
-            </div>
-
-            <div className="pt-2 flex gap-2">
-              <button
-                onClick={() => alert("Downloading Official Digital Pass PDF...")}
-                className="flex-1 py-3 rounded-xl bg-zinc-900 hover:bg-black dark:bg-white dark:hover:bg-zinc-200 text-white dark:text-zinc-950 font-bold text-xs flex items-center justify-center gap-1.5 shadow-md cursor-pointer"
-              >
-                <Download className="w-3.5 h-3.5" />
-                <span>Download Pass</span>
-              </button>
-            </div>
-
           </div>
         </div>
       )}

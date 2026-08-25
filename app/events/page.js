@@ -5,61 +5,62 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Calendar, Clock, MapPin, Trophy, ArrowRight, Tag, Search, Users } from "lucide-react";
 import { data } from "@/lib/data";
+import { MagicCard } from "@/components/ui/magic-card";
 
 // Helper function to assign styling and imagery based on category
 const getEventStyles = (category) => {
   const styles = {
     "Hackathon": {
       image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=2070&auto=format&fit=crop",
-      color: "from-blue-500/20 to-purple-500/20",
-      border: "group-hover:border-blue-500/50"
+      badgeColor: "bg-[#2C5745] text-white",
+      border: "group-hover:border-[#2C5745]/60"
     },
     "Competitive Programming": {
       image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop",
-      color: "from-green-500/20 to-emerald-500/20",
-      border: "group-hover:border-green-500/50"
+      badgeColor: "bg-[#EB7D00] text-white",
+      border: "group-hover:border-[#EB7D00]/60"
     },
     "Design": {
       image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=2000&auto=format&fit=crop",
-      color: "from-pink-500/20 to-rose-500/20",
-      border: "group-hover:border-pink-500/50"
+      badgeColor: "bg-[#AE2448] text-white",
+      border: "group-hover:border-[#AE2448]/60"
     },
     "Robotics": {
       image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=2070&auto=format&fit=crop",
-      color: "from-red-500/20 to-orange-500/20",
-      border: "group-hover:border-red-500/50"
+      badgeColor: "bg-[#AE2448] text-white",
+      border: "group-hover:border-[#AE2448]/60"
     },
     "IoT / Hardware": {
       image: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop",
-      color: "from-cyan-500/20 to-teal-500/20",
-      border: "group-hover:border-cyan-500/50"
+      badgeColor: "bg-[#2C5745] text-white",
+      border: "group-hover:border-[#2C5745]/60"
     },
     "Gaming": {
       image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=2070&auto=format&fit=crop",
-      color: "from-indigo-500/20 to-violet-500/20",
-      border: "group-hover:border-indigo-500/50"
+      badgeColor: "bg-[#EB7D00] text-white",
+      border: "group-hover:border-[#EB7D00]/60"
     },
     "Cybersecurity": {
       image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop",
-      color: "from-orange-500/20 to-amber-500/20",
-      border: "group-hover:border-orange-500/50"
+      badgeColor: "bg-[#AE2448] text-white",
+      border: "group-hover:border-[#AE2448]/60"
     },
     "Adventure": {
       image: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=2021&auto=format&fit=crop",
-      color: "from-yellow-500/20 to-lime-500/20",
-      border: "group-hover:border-yellow-500/50"
+      badgeColor: "bg-[#EB7D00] text-white",
+      border: "group-hover:border-[#EB7D00]/60"
     },
     "Workshop": {
       image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2070&auto=format&fit=crop",
-      color: "from-purple-500/20 to-fuchsia-500/20",
-      border: "group-hover:border-purple-500/50"
+      badgeColor: "bg-[#2C5745] text-white",
+      border: "group-hover:border-[#2C5745]/60"
     }
   };
 
   return styles[category] || {
     image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070&auto=format&fit=crop",
-    color: "from-zinc-500/20 to-neutral-500/20",
-    border: "group-hover:border-zinc-500/50"
+    badgeColor: "bg-[#2C5745] text-white",
+    border: "group-hover:border-[#2C5745]/60"
   };
 };
 
@@ -73,7 +74,7 @@ export default function EventsPage() {
   const [selectedPrize, setSelectedPrize] = useState("All Prizes");
 
   // Options for filters
-  const categories = ["All Categories", ...new Set(events.map(e => e.category))];
+  const categories = ["All Categories", ...Array.from(new Set(events.map(e => e.category)))];
   const teamSizes = ["All Sizes", "Solo", "Team (2-3)", "Team (4+)"];
   const prizeRanges = ["All Prizes", "No Prize", "Under ₹10,000", "₹10,000 - ₹20,000", "Over ₹20,000"];
 
@@ -113,18 +114,12 @@ export default function EventsPage() {
   });
 
   return (
-    <div className="min-h-screen bg-zinc-50 dark:bg-[#0a0a0a] text-zinc-900 dark:text-zinc-100">
-      {/* Background gradients */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
-        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-emerald-500/10 blur-[120px]" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-blue-500/10 blur-[120px]" />
-      </div>
-
+    <div className="min-h-screen text-zinc-900 dark:text-zinc-100">
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
         
         {/* Header */}
         <div className="flex flex-col items-center text-center mb-10 space-y-4">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-zinc-800 to-zinc-500 dark:from-white dark:to-zinc-500">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-zinc-900 dark:text-white">
             Explore Events
           </h1>
           <p className="text-lg md:text-xl text-zinc-600 dark:text-zinc-400 max-w-2xl">
@@ -143,7 +138,7 @@ export default function EventsPage() {
               placeholder="Search by event name or description..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-12 pr-4 py-3 bg-white dark:bg-black/50 border border-zinc-200 dark:border-zinc-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#00ffc6]/50 transition-all text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400"
+              className="w-full pl-12 pr-4 py-3 bg-white dark:bg-black/50 border border-zinc-200 dark:border-zinc-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#2C5745]/50 dark:focus:ring-[#EB7D00]/50 transition-all text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400"
             />
           </div>
 
@@ -152,7 +147,7 @@ export default function EventsPage() {
             <select 
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
-              className="px-4 py-3 bg-white dark:bg-black/50 border border-zinc-200 dark:border-zinc-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#00ffc6]/50 text-zinc-900 dark:text-zinc-100 cursor-pointer min-w-[160px] appearance-none"
+              className="px-4 py-3 bg-white dark:bg-black/50 border border-zinc-200 dark:border-zinc-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#2C5745]/50 dark:focus:ring-[#EB7D00]/50 text-zinc-900 dark:text-zinc-100 cursor-pointer min-w-[160px] appearance-none"
             >
               {categories.map(cat => <option key={cat} value={cat}>{cat}</option>)}
             </select>
@@ -161,7 +156,7 @@ export default function EventsPage() {
             <select 
               value={selectedTeamSize}
               onChange={(e) => setSelectedTeamSize(e.target.value)}
-              className="px-4 py-3 bg-white dark:bg-black/50 border border-zinc-200 dark:border-zinc-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#00ffc6]/50 text-zinc-900 dark:text-zinc-100 cursor-pointer min-w-[140px] appearance-none"
+              className="px-4 py-3 bg-white dark:bg-black/50 border border-zinc-200 dark:border-zinc-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#2C5745]/50 dark:focus:ring-[#EB7D00]/50 text-zinc-900 dark:text-zinc-100 cursor-pointer min-w-[140px] appearance-none"
             >
               {teamSizes.map(size => <option key={size} value={size}>{size}</option>)}
             </select>
@@ -170,7 +165,7 @@ export default function EventsPage() {
             <select 
               value={selectedPrize}
               onChange={(e) => setSelectedPrize(e.target.value)}
-              className="px-4 py-3 bg-white dark:bg-black/50 border border-zinc-200 dark:border-zinc-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#00ffc6]/50 text-zinc-900 dark:text-zinc-100 cursor-pointer min-w-[160px] appearance-none"
+              className="px-4 py-3 bg-white dark:bg-black/50 border border-zinc-200 dark:border-zinc-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#2C5745]/50 dark:focus:ring-[#EB7D00]/50 text-zinc-900 dark:text-zinc-100 cursor-pointer min-w-[160px] appearance-none"
             >
               {prizeRanges.map(prize => <option key={prize} value={prize}>{prize}</option>)}
             </select>
@@ -197,7 +192,7 @@ export default function EventsPage() {
                 setSelectedTeamSize("All Sizes");
                 setSelectedPrize("All Prizes");
               }}
-              className="bg-[#00ffc6] text-black hover:bg-[#00e5b2]"
+              className="bg-[#2C5745] text-white hover:bg-[#234537]"
             >
               Clear all filters
             </Button>
@@ -210,23 +205,22 @@ export default function EventsPage() {
             const styles = getEventStyles(event.category);
             
             return (
-              <div 
+              <MagicCard 
                 key={event.id}
-                className={`group relative flex flex-col rounded-3xl bg-white/40 dark:bg-zinc-900/40 backdrop-blur-md border border-zinc-200 dark:border-zinc-800/50 overflow-hidden hover:shadow-2xl transition-all duration-300 ${styles.border}`}
+                className="flex flex-col h-full rounded-3xl overflow-hidden hover:shadow-xl transition-all duration-300"
               >
                 {/* Event Image Banner */}
                 <div className="relative h-48 w-full overflow-hidden">
-                  <div className={`absolute inset-0 bg-gradient-to-br ${styles.color} opacity-80 mix-blend-overlay z-10`} />
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img 
                     src={styles.image} 
                     alt={event.name}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                   
                   {/* Category Badge */}
                   <div className="absolute top-4 left-4 z-20">
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-white/90 dark:bg-black/80 text-zinc-900 dark:text-zinc-100 backdrop-blur-md">
+                    <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold ${styles.badgeColor} shadow-md`}>
                       <Tag className="w-3 h-3" />
                       {event.category}
                     </span>
@@ -234,8 +228,8 @@ export default function EventsPage() {
                 </div>
 
                 {/* Event Details */}
-                <div className="flex flex-col flex-1 p-6 z-20 relative">
-                  <h3 className="text-2xl font-bold mb-3 text-zinc-900 dark:text-zinc-100 group-hover:text-[#00ffc6] transition-colors">
+                <div className="flex flex-col flex-1 p-6 relative">
+                  <h3 className="text-2xl font-bold mb-3 text-zinc-900 dark:text-zinc-100 group-hover:text-[#2C5745] dark:group-hover:text-[#EB7D00] transition-colors">
                     {event.name}
                   </h3>
                   
@@ -260,8 +254,8 @@ export default function EventsPage() {
                           : `Team of ${event.teamSize.min}-${event.teamSize.max}`}
                       </span>
                     </div>
-                    <div className="flex items-center text-sm font-semibold text-zinc-900 dark:text-[#00ffc6]">
-                      <Trophy className="w-4 h-4 mr-3 text-yellow-500" />
+                    <div className="flex items-center text-sm font-bold text-[#2C5745] dark:text-[#EB7D00]">
+                      <Trophy className="w-4 h-4 mr-3 text-[#EB7D00]" />
                       <span>
                         {event.prizePool > 0 ? `Prize Pool: ${event.currency} ${event.prizePool.toLocaleString()}` : "No Prize Pool"}
                       </span>
@@ -269,13 +263,13 @@ export default function EventsPage() {
                   </div>
 
                   <Link href={`/events/${event.slug}`} className="mt-auto">
-                    <Button className="w-full rounded-xl bg-zinc-900 dark:bg-white text-white dark:text-black hover:bg-zinc-800 dark:hover:bg-zinc-200 group-hover:bg-[#00ffc6] group-hover:text-black transition-all">
+                    <Button className="w-full rounded-xl bg-zinc-900 dark:bg-white text-white dark:text-black hover:bg-[#2C5745] dark:hover:bg-[#EB7D00] dark:hover:text-black transition-all cursor-pointer">
                       View Details
                       <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
                     </Button>
                   </Link>
                 </div>
-              </div>
+              </MagicCard>
             );
           })}
         </div>

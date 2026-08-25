@@ -14,6 +14,8 @@ import {
   ArrowRight
 } from "lucide-react";
 import { data } from "@/lib/data";
+import { ShimmerButton } from "@/components/ui/shimmer-button";
+import { MagicCard } from "@/components/ui/magic-card";
 
 // Helper function to resolve high-res event image or poster
 function getEventVisual(event) {
@@ -150,8 +152,8 @@ export default async function EventDetailPage({ params }) {
               
               {/* Tag overlay inside image for sleek aesthetic */}
               <div className="absolute top-5 left-5 z-10">
-                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider backdrop-blur-md bg-black/60 text-white border border-white/20 shadow-lg">
-                  <Tag className="w-3.5 h-3.5 text-[#00ffc6]" />
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider backdrop-blur-md bg-black/70 text-white border border-white/20 shadow-lg">
+                  <Tag className="w-3.5 h-3.5 text-[#EB7D00]" />
                   {event.tag || event.category}
                 </span>
               </div>
@@ -160,11 +162,11 @@ export default async function EventDetailPage({ params }) {
 
           {/* Right Column: Event Header & Meta Information Card */}
           <div className="lg:col-span-5 flex flex-col">
-            <div className="h-full rounded-3xl backdrop-blur-xl bg-white/70 dark:bg-zinc-900/70 border border-zinc-300/70 dark:border-zinc-800/80 p-6 sm:p-8 shadow-sm flex flex-col justify-between">
+            <MagicCard className="h-full rounded-3xl p-6 sm:p-8 shadow-sm flex flex-col justify-between">
               <div>
                 {/* Category Pill */}
                 <div className="mb-4">
-                  <span className="inline-block px-3.5 py-1 rounded-full text-xs font-semibold tracking-wide bg-zinc-200/90 dark:bg-zinc-800/90 text-zinc-800 dark:text-zinc-200 border border-zinc-300/60 dark:border-zinc-700/60">
+                  <span className="inline-block px-3.5 py-1 rounded-full text-xs font-bold tracking-wide bg-[#2C5745]/15 text-[#2C5745] dark:text-[#EB7D00] border border-[#2C5745]/30 dark:border-[#EB7D00]/30">
                     {event.category}
                   </span>
                 </div>
@@ -186,7 +188,7 @@ export default async function EventDetailPage({ params }) {
                     <span className="block text-xs font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-1">
                       Prize Pool
                     </span>
-                    <span className="text-xl sm:text-2xl font-black text-zinc-900 dark:text-white tracking-tight">
+                    <span className="text-xl sm:text-2xl font-black text-[#2C5745] dark:text-[#EB7D00] tracking-tight">
                       {prizeDisplay}
                     </span>
                   </div>
@@ -236,15 +238,18 @@ export default async function EventDetailPage({ params }) {
 
               {/* Primary Action Button */}
               <div className="mt-4">
-                <Link
-                  href={`/events/${event.slug}/register`}
-                  className="w-full py-4 px-6 rounded-2xl bg-zinc-900 hover:bg-black dark:bg-white dark:hover:bg-zinc-200 text-white dark:text-zinc-950 font-bold text-base shadow-md hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 group cursor-pointer"
-                >
-                  <span>Register Now</span>
-                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                <Link href={`/events/${event.slug}/register`} className="block w-full">
+                  <ShimmerButton
+                    background="#2C5745"
+                    shimmerColor="#EB7D00"
+                    className="w-full py-4 px-6 rounded-2xl text-white font-bold text-base shadow-md hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 group cursor-pointer"
+                  >
+                    <span>Register Now</span>
+                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                  </ShimmerButton>
                 </Link>
               </div>
-            </div>
+            </MagicCard>
           </div>
         </div>
 
@@ -298,7 +303,7 @@ export default async function EventDetailPage({ params }) {
         )}
 
         {/* Bottom CTA Banner Card */}
-        <div className="rounded-3xl backdrop-blur-xl bg-white/70 dark:bg-zinc-900/70 border border-zinc-300/70 dark:border-zinc-800/80 p-6 sm:p-10 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
+        <MagicCard className="rounded-3xl p-6 sm:p-10 shadow-md flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="text-center md:text-left">
             <h3 className="text-2xl sm:text-3xl font-black text-zinc-900 dark:text-white tracking-tight mb-2">
               {actionPhrase}
@@ -310,12 +315,18 @@ export default async function EventDetailPage({ params }) {
 
           <Link
             href={`/events/${event.slug}/register`}
-            className="w-full md:w-auto shrink-0 py-3.5 px-8 rounded-2xl bg-zinc-900 hover:bg-black dark:bg-white dark:hover:bg-zinc-200 text-white dark:text-zinc-950 font-bold text-base shadow-md hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 group cursor-pointer"
+            className="w-full md:w-auto shrink-0"
           >
-            <span>{event.registerCta || `Register for ${event.name}`}</span>
-            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+            <ShimmerButton
+              background="#2C5745"
+              shimmerColor="#EB7D00"
+              className="w-full md:w-auto py-3.5 px-8 rounded-2xl text-white font-bold text-base shadow-md hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 group cursor-pointer"
+            >
+              <span>{event.registerCta || `Register for ${event.name}`}</span>
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+            </ShimmerButton>
           </Link>
-        </div>
+        </MagicCard>
 
       </div>
     </div>

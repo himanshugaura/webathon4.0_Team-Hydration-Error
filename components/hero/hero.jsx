@@ -5,6 +5,7 @@ import { useTheme } from "next-themes";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Environment, ContactShadows } from "@react-three/drei";
 import * as THREE from "three";
+import { SpecialText } from "@/components/ui/special-text";
 
 class HeartCurve extends THREE.Curve {
   constructor() {
@@ -646,7 +647,7 @@ export function RobotHero({
   backgroundText = "NIRVAN 26",
   color = "#c4c4c4",
   scale = 1,
-  pantallaColor = "#00ffc6",
+  pantallaColor = "#EB7D00",
   pantallaBrillo = 1.2,
   blinkCycle = 3.0,
   metalness = 0.0,
@@ -658,7 +659,7 @@ export function RobotHero({
 
   const isDark = mounted && resolvedTheme === "dark";
 
-  // Theme-aware gradient — light grey in light mode, dark slate in dark mode
+  // Theme-aware background — light grey in light mode, dark slate in dark mode
   const entorno = isDark
     ? {
         fondoArriba: "#0d0d0d",
@@ -666,7 +667,7 @@ export function RobotHero({
         fondoAbajo:  "#0a0a0a",
         luzAmbiente: 0.55,
         luzPrincipal: 0.0,
-        luzPrincipalColor: "#00ffe2",
+        luzPrincipalColor: "#EB7D00",
         luzRelleno: 0.0,
         luzRellenoColor: "#ffffff",
         sombraOpacidad: 0.9,
@@ -679,7 +680,7 @@ export function RobotHero({
         fondoAbajo:  "#cecbcb",
         luzAmbiente: 0.75,
         luzPrincipal: 0.0,
-        luzPrincipalColor: "#00ffe2",
+        luzPrincipalColor: "#2C5745",
         luzRelleno: 0.0,
         luzRellenoColor: "#dbdbdb",
         sombraOpacidad: 0.85,
@@ -775,6 +776,17 @@ export function RobotHero({
             />
           </ResponsiveGroup>
         </Canvas>
+      </div>
+
+      {/* Large Floating Animated Tagline with SpecialText Component */}
+      <div className="absolute bottom-8 sm:bottom-12 inset-x-0 z-20 flex flex-col items-center justify-center text-center px-4 pointer-events-none">
+        <SpecialText
+          speed={22}
+          delay={0.3}
+          className="text-base sm:text-2xl md:text-3xl lg:text-4xl text-[#2C5745] dark:text-[#EB7D00] uppercase tracking-[0.2em] font-mono font-black drop-shadow-md transition-colors duration-500"
+        >
+          Where Ideas Become Innovation
+        </SpecialText>
       </div>
 
     </section>

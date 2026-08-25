@@ -3,26 +3,26 @@
 import { Timeline } from "@/components/hero/timeline";
 import { data } from "@/lib/data";
 
-// Tag colour map
+// Tag colour map with the new palette
 const tagColors = {
-  TECH:   "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-400/30",
-  DESIGN: "bg-pink-500/10 text-pink-600 dark:text-pink-400 border-pink-400/30",
-  GAMING: "bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border-indigo-400/30",
-  LEARN:  "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-400/30",
-  FUN:    "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-400/30",
+  TECH:   "bg-[#2C5745]/15 text-[#2C5745] dark:text-[#EB7D00] border-[#2C5745]/30",
+  DESIGN: "bg-[#AE2448]/15 text-[#AE2448] dark:text-[#AE2448] border-[#AE2448]/30",
+  GAMING: "bg-[#EB7D00]/15 text-[#EB7D00] dark:text-[#EB7D00] border-[#EB7D00]/30",
+  LEARN:  "bg-[#2C5745]/15 text-[#2C5745] dark:text-[#2C5745] border-[#2C5745]/30",
+  FUN:    "bg-[#EB7D00]/15 text-[#EB7D00] dark:text-[#EB7D00] border-[#EB7D00]/30",
 };
 
 function ScheduleCard({ time, title, description, venue, tags }) {
   return (
-    <div className="flex gap-4 items-start p-4 rounded-xl bg-zinc-50 dark:bg-zinc-900/60 border border-zinc-200 dark:border-zinc-800 hover:border-[#00ffc6]/40 transition-colors group">
+    <div className="flex gap-4 items-start p-4 rounded-xl bg-zinc-50 dark:bg-zinc-900/60 border border-zinc-200 dark:border-zinc-800 hover:border-[#EB7D00]/50 transition-colors group">
       {/* Time pill */}
-      <div className="shrink-0 text-xs font-bold tabular-nums text-[#007a70] dark:text-[#00ffc6] bg-[#00ffc6]/10 border border-[#00ffc6]/20 rounded-lg px-2.5 py-1.5 mt-0.5 leading-tight text-center min-w-[70px]">
+      <div className="shrink-0 text-xs font-bold tabular-nums text-[#2C5745] dark:text-[#EB7D00] bg-[#2C5745]/10 dark:bg-[#EB7D00]/10 border border-[#2C5745]/20 dark:border-[#EB7D00]/20 rounded-lg px-2.5 py-1.5 mt-0.5 leading-tight text-center min-w-[70px]">
         {time}
       </div>
 
       <div className="flex-1 min-w-0">
         <div className="flex flex-wrap items-center gap-2 mb-1">
-          <h4 className="font-bold text-zinc-900 dark:text-zinc-100 text-sm group-hover:text-[#007a70] dark:group-hover:text-[#00ffc6] transition-colors">
+          <h4 className="font-bold text-zinc-900 dark:text-zinc-100 text-sm group-hover:text-[#2C5745] dark:group-hover:text-[#EB7D00] transition-colors">
             {title}
           </h4>
           {tags && tags.map((tag) => (
@@ -91,7 +91,7 @@ export default function CountdownAndTimeline() {
       {/* ── Timeline heading ── */}
       <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-10 pt-10 pb-4">
         <h2 className="text-3xl md:text-4xl font-black text-zinc-900 dark:text-white mb-2">
-          3 Days of <span className="text-[#007a70] dark:text-[#00ffc6]">Non-Stop Action</span>
+          3 Days of <span className="text-[#2C5745] dark:text-[#EB7D00]">Non-Stop Action</span>
         </h2>
         <p className="text-zinc-600 dark:text-zinc-400 max-w-xl text-sm md:text-base">
           From the opening ceremony to the grand prize distribution — here&apos;s every moment you can&apos;t miss at {fest.name}.
