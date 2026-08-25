@@ -33,8 +33,7 @@ export function Navbar() {
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "Events", href: "/events" },
-    { name: "Schedule", href: "/schedule" },
-    { name: "Sponsors", href: "/sponsors" },
+    { name: "About", href: "/about" },
     { name: "Contact", href: "/contact" },
     { name: "Portal", href: "/login" },
   ];
@@ -53,10 +52,12 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#84a98c] to-[#354f52] flex items-center justify-center shadow-lg group-hover:shadow-[#84a98c]/50 transition-all duration-300">
-              <span className="text-white font-bold text-xl tracking-tighter">N</span>
-            </div>
+          <Link href="/" className="flex items-center gap-3 group">
+            <img 
+              src="/gehu_logo.svg" 
+              alt="GEHU Logo" 
+              className="h-10 w-auto drop-shadow-md group-hover:scale-105 transition-transform duration-300" 
+            />
             <span className="font-extrabold text-2xl tracking-tight text-[#2f3e46] dark:text-[#cad2c5]">
               NIRVAN <span className="text-[#52796f] dark:text-[#84a98c]">'26</span>
             </span>
