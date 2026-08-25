@@ -36,6 +36,7 @@ export function Navbar() {
     { name: "Schedule", href: "/schedule" },
     { name: "Sponsors", href: "/sponsors" },
     { name: "Contact", href: "/contact" },
+    { name: "Portal", href: "/login" },
   ];
 
   return (
@@ -89,6 +90,12 @@ export function Navbar() {
               )}
             </button>
             <Link
+              href="/login"
+              className="px-4 py-2 text-sm font-semibold text-[#2f3e46] dark:text-[#cad2c5] hover:text-[#52796f] dark:hover:text-[#84a98c] transition-colors"
+            >
+              Sign In
+            </Link>
+            <Link
               href="/register"
               className="px-6 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-[#52796f] to-[#354f52] hover:from-[#44655c] hover:to-[#2c4144] rounded-full shadow-lg shadow-[#52796f]/30 hover:shadow-[#52796f]/50 transition-all duration-300 hover:-translate-y-0.5"
             >
@@ -139,13 +146,22 @@ export function Navbar() {
                   {link.name}
                 </Link>
               ))}
-              <Link
-                href="/register"
-                onClick={() => setIsOpen(false)}
-                className="w-full text-center mt-4 px-6 py-3 text-base font-semibold text-white bg-gradient-to-r from-[#52796f] to-[#354f52] rounded-xl shadow-lg shadow-[#52796f]/30"
-              >
-                Register Now
-              </Link>
+              <div className="w-full flex flex-col gap-2 pt-2">
+                <Link
+                  href="/login"
+                  onClick={() => setIsOpen(false)}
+                  className="w-full text-center px-6 py-2.5 text-base font-semibold text-[#2f3e46] dark:text-[#cad2c5] bg-black/5 dark:bg-white/5 rounded-xl border border-black/5 dark:border-white/10"
+                >
+                  Sign In
+                </Link>
+                <Link
+                  href="/register"
+                  onClick={() => setIsOpen(false)}
+                  className="w-full text-center px-6 py-2.5 text-base font-semibold text-white bg-gradient-to-r from-[#52796f] to-[#354f52] rounded-xl shadow-lg shadow-[#52796f]/30"
+                >
+                  Register Now
+                </Link>
+              </div>
             </div>
           </motion.div>
         )}
