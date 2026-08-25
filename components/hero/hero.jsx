@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useRef, useState, useEffect } from "react";
+import { useTheme } from "next-themes";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Environment, ContactShadows } from "@react-three/drei";
 import * as THREE from "three";
@@ -641,7 +642,6 @@ function RobotPrototype({
   );
 }
 
-
 export function RobotHero({
   backgroundText = "NIRVAN 26",
   color = "#c4c4c4",
@@ -652,24 +652,45 @@ export function RobotHero({
   metalness = 0.0,
 } = {}) {
   const containerRef = useRef(null);
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
 
-  const entorno = {
-    fondoArriba: "#cecbcb",
-    fondoMedio: "#9a9a9a",
-    fondoAbajo: "#bebebe",
-    luzAmbiente: 0.75,
-    luzPrincipal: 0.0,
-    luzPrincipalColor: "#00ffe2",
-    luzRelleno: 0.0,
-    luzRellenoColor: "#dbdbdb",
-    sombraOpacidad: 0.85,
-    sombraBlur: 1.7,
-  };
+  const isDark = mounted && resolvedTheme === "dark";
+
+  // Theme-aware gradient — light grey in light mode, dark slate in dark mode
+  const entorno = isDark
+    ? {
+        fondoArriba: "#0d0d0d",
+        fondoMedio:  "#111111",
+        fondoAbajo:  "#0a0a0a",
+        luzAmbiente: 0.55,
+        luzPrincipal: 0.0,
+        luzPrincipalColor: "#00ffe2",
+        luzRelleno: 0.0,
+        luzRellenoColor: "#ffffff",
+        sombraOpacidad: 0.9,
+        sombraBlur: 1.7,
+        bgTextColor: "#ffffff",
+      }
+    : {
+        fondoArriba: "#cecbcb",
+        fondoMedio:  "#9a9a9a",
+        fondoAbajo:  "#bebebe",
+        luzAmbiente: 0.75,
+        luzPrincipal: 0.0,
+        luzPrincipalColor: "#00ffe2",
+        luzRelleno: 0.0,
+        luzRellenoColor: "#dbdbdb",
+        sombraOpacidad: 0.85,
+        sombraBlur: 1.7,
+        bgTextColor: "#000000",
+      };
 
   return (
     <section
       ref={containerRef}
-      className="relative w-full h-dvh min-h-[600px] overflow-hidden"
+      className="relative w-full h-dvh min-h-[600px] overflow-hidden transition-colors duration-500"
       style={{
         background: `linear-gradient(to bottom, ${entorno.fondoArriba} 0%, ${entorno.fondoArriba} 55%, ${entorno.fondoMedio} 65%, ${entorno.fondoAbajo} 100%)`,
       }}
@@ -679,10 +700,9 @@ export function RobotHero({
         style={{ zIndex: 0 }}
       >
         <h1
-          className="font-sans font-black select-none whitespace-nowrap"
+          className="font-sans font-black select-none whitespace-nowrap transition-colors duration-500"
           style={{
-            color: "#000000",
-            opacity: 0.13,
+            color: entorno.bgTextColor,            opacity: 0.13,
             letterSpacing: "-0.05em",
             fontSize: "clamp(4rem, 15vw, 14rem)",
             lineHeight: 1,
