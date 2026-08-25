@@ -23,6 +23,7 @@ import {
 import { data } from "@/lib/data";
 import { ShimmerButton } from "@/components/ui/shimmer-button";
 import { MagicCard } from "@/components/ui/magic-card";
+import { SparklesText } from "@/components/ui/sparkles-text";
 
 // Mock Logged In Student Profile
 const mockStudent = {
@@ -171,11 +172,7 @@ export default function StudentDashboard() {
             {/* Quick Action Link to Explore More */}
             <div className="flex flex-wrap items-center gap-3">
               <Link href="/events">
-                <ShimmerButton
-                  background="#2C5745"
-                  shimmerColor="#EB7D00"
-                  className="px-5 py-3 rounded-xl text-white font-bold text-xs sm:text-sm shadow-md transition-all flex items-center gap-2 cursor-pointer"
-                >
+                <ShimmerButton className="px-5 py-3 rounded-xl text-white font-bold text-xs sm:text-sm shadow-md transition-all flex items-center gap-2 cursor-pointer">
                   <span>Browse More Events</span>
                   <ArrowRight className="w-4 h-4" />
                 </ShimmerButton>
@@ -191,7 +188,7 @@ export default function StudentDashboard() {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
               <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-zinc-900 dark:text-white">
-                My Registered Events
+                My <SparklesText className="text-zinc-900 dark:text-white">Registered Events</SparklesText>
               </h2>
               <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400">
                 View your schedule, manage team squad members, and access your entry passes.

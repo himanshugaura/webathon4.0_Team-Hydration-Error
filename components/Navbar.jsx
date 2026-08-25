@@ -96,11 +96,7 @@ export function Navbar() {
               Sign In
             </Link>
             <Link href="/register">
-              <ShimmerButton
-                background="#2C5745"
-                shimmerColor="#EB7D00"
-                className="text-sm font-bold shadow-md hover:-translate-y-0.5 transition-transform"
-              >
+              <ShimmerButton className="text-sm font-bold shadow-md hover:-translate-y-0.5 transition-transform">
                 <span>Register Now</span>
               </ShimmerButton>
             </Link>

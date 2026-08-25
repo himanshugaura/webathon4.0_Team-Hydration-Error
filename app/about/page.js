@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import { SparklesText } from "@/components/ui/sparkles-text";
 import {
   Sparkles,
   Award,
@@ -175,24 +176,7 @@ export default function AboutPage() {
   };
 
   return (
-    <div className="relative min-h-screen pt-28 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-b from-[#f7f9f7] via-[#eef2ee] to-[#e4eae4] dark:from-[#0d1611] dark:via-[#132018] dark:to-[#0a110d] transition-colors duration-500">
-      
-      {/* Background Soft Organic Glows (Strictly Sage & Emerald, No Blue/Purple) */}
-      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-        <div className="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-[#84a98c]/20 dark:bg-[#52796f]/15 blur-3xl" />
-        <div className="absolute top-1/3 -right-32 w-[30rem] h-[30rem] rounded-full bg-[#52796f]/15 dark:bg-[#84a98c]/10 blur-3xl" />
-        <div className="absolute -bottom-32 left-1/3 w-[28rem] h-[28rem] rounded-full bg-[#354f52]/15 dark:bg-[#2f3e46]/30 blur-3xl" />
-        
-        {/* Subtle grid pattern */}
-        <div
-          className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]"
-          style={{
-            backgroundImage: `radial-gradient(rgba(82, 121, 111, 0.8) 1px, transparent 1px)`,
-            backgroundSize: "28px 28px",
-          }}
-        />
-      </div>
-
+    <div className="relative min-h-screen pt-28 pb-20 px-4 sm:px-6 lg:px-8 text-zinc-900 dark:text-zinc-100 transition-colors duration-500">
       <div className="relative z-10 max-w-7xl mx-auto space-y-20 sm:space-y-28">
         
         {/* =========================================================
@@ -211,11 +195,11 @@ export default function AboutPage() {
           </div>
 
           {/* Main Title */}
-          <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-[#2f3e46] dark:text-[#cad2c5] leading-tight">
+          <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-zinc-900 dark:text-white leading-tight">
             Where Ideas Become <br className="hidden sm:inline" />
-            <span className="bg-gradient-to-r from-[#52796f] via-[#84a98c] to-[#354f52] bg-clip-text text-transparent">
+            <SparklesText className="text-zinc-900 dark:text-white">
               Innovation & Impact
-            </span>
+            </SparklesText>
           </h1>
 
           {/* Lead Paragraph */}

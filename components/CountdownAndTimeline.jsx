@@ -1,6 +1,7 @@
 "use client";
 
 import { Timeline } from "@/components/hero/timeline";
+import { SparklesText } from "@/components/ui/sparkles-text";
 import { data } from "@/lib/data";
 
 // Tag colour map with the new palette
@@ -91,7 +92,7 @@ export default function CountdownAndTimeline() {
       {/* ── Timeline heading ── */}
       <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-10 pt-10 pb-4">
         <h2 className="text-3xl md:text-4xl font-black text-zinc-900 dark:text-white mb-2">
-          3 Days of <span className="text-[#2C5745] dark:text-[#EB7D00]">Non-Stop Action</span>
+          3 Days of <SparklesText className="text-zinc-900 dark:text-white">Non-Stop Action</SparklesText>
         </h2>
         <p className="text-zinc-600 dark:text-zinc-400 max-w-xl text-sm md:text-base">
           From the opening ceremony to the grand prize distribution — here&apos;s every moment you can&apos;t miss at {fest.name}.

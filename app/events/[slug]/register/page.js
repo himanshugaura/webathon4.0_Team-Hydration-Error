@@ -378,8 +378,6 @@ export default function EventRegistrationPage({ params }) {
                     <ShimmerButton
                       type="submit"
                       disabled={isSubmitting}
-                      background="#2C5745"
-                      shimmerColor="#EB7D00"
                       className="w-full sm:w-auto py-4 px-10 rounded-2xl text-white font-bold text-base shadow-md hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 group cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed"
                     >
                       {isSubmitting ? (

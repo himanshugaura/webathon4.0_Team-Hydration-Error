@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Calendar, Clock, MapPin, Trophy, ArrowRight, Tag, Search, Users } from "lucide-react";
 import { data } from "@/lib/data";
 import { MagicCard } from "@/components/ui/magic-card";
-import { MeshDriftBackground } from "@/components/ui/mesh-drift-background";
+import { SparklesText } from "@/components/ui/sparkles-text";
 
 // Helper function to assign styling and imagery based on category
 const getEventStyles = (category) => {
@@ -115,19 +115,13 @@ export default function EventsPage() {
   });
 
   return (
-    <div className="relative min-h-screen text-zinc-900 dark:text-zinc-100 overflow-hidden">
-      {/* Animated WebGL Shader Background */}
-      <MeshDriftBackground 
-        className="opacity-40 dark:opacity-65 transition-opacity duration-700" 
-        grain={0.015} 
-      />
-
+    <div className="min-h-screen text-zinc-900 dark:text-zinc-100">
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
         
         {/* Header */}
         <div className="flex flex-col items-center text-center mb-10 space-y-4">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-zinc-900 dark:text-white">
-            Explore Events
+            Explore <SparklesText className="text-zinc-900 dark:text-white">Events</SparklesText>
           </h1>
           <p className="text-lg md:text-xl text-zinc-600 dark:text-zinc-400 max-w-2xl">
             Discover a wide range of exciting technical, non-technical, and gaming events at {data.fest.name}.

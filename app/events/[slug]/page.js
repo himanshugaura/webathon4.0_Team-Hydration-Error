@@ -16,7 +16,7 @@ import {
 import { data } from "@/lib/data";
 import { ShimmerButton } from "@/components/ui/shimmer-button";
 import { MagicCard } from "@/components/ui/magic-card";
-import { MeshDriftBackground } from "@/components/ui/mesh-drift-background";
+import { SparklesText } from "@/components/ui/sparkles-text";
 
 // Helper function to resolve high-res event image or poster
 function getEventVisual(event) {
@@ -119,14 +119,8 @@ export default async function EventDetailPage({ params }) {
       : "Certificate";
 
   return (
-    <div className="relative min-h-screen text-zinc-900 dark:text-zinc-100 transition-colors duration-500 overflow-hidden">
-      {/* Animated WebGL Shader Background */}
-      <MeshDriftBackground 
-        className="opacity-40 dark:opacity-65 transition-opacity duration-700" 
-        grain={0.015} 
-      />
-
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-20">
+    <div className="min-h-screen text-zinc-900 dark:text-zinc-100 transition-colors duration-500">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-20">
         
         {/* Back Link */}
         <div className="mb-8">
@@ -246,11 +240,7 @@ export default async function EventDetailPage({ params }) {
               {/* Primary Action Button */}
               <div className="mt-4">
                 <Link href={`/events/${event.slug}/register`} className="block w-full">
-                  <ShimmerButton
-                    background="#2C5745"
-                    shimmerColor="#EB7D00"
-                    className="w-full py-4 px-6 rounded-2xl text-white font-bold text-base shadow-md hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 group cursor-pointer"
-                  >
+                  <ShimmerButton className="w-full py-4 px-6 rounded-2xl text-white font-bold text-base shadow-md hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 group cursor-pointer">
                     <span>Register Now</span>
                     <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                   </ShimmerButton>
@@ -313,7 +303,7 @@ export default async function EventDetailPage({ params }) {
         <MagicCard className="rounded-3xl p-6 sm:p-10 shadow-md flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="text-center md:text-left">
             <h3 className="text-2xl sm:text-3xl font-black text-zinc-900 dark:text-white tracking-tight mb-2">
-              {actionPhrase}
+              <SparklesText className="text-zinc-900 dark:text-white">{actionPhrase}</SparklesText>
             </h3>
             <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 font-medium">
               Secure your spot in {event.name} before registrations close.
@@ -324,11 +314,7 @@ export default async function EventDetailPage({ params }) {
             href={`/events/${event.slug}/register`}
             className="w-full md:w-auto shrink-0"
           >
-            <ShimmerButton
-              background="#2C5745"
-              shimmerColor="#EB7D00"
-              className="w-full md:w-auto py-3.5 px-8 rounded-2xl text-white font-bold text-base shadow-md hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 group cursor-pointer"
-            >
+            <ShimmerButton className="w-full md:w-auto py-3.5 px-8 rounded-2xl text-white font-bold text-base shadow-md hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 group cursor-pointer">
               <span>{event.registerCta || `Register for ${event.name}`}</span>
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
             </ShimmerButton>
