@@ -316,11 +316,6 @@ export default function GalleryPage() {
             HEADER & HERO (Flow 7 from PRD)
            ========================================================= */}
         <div className="text-center space-y-4 max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/60 dark:bg-[#15231c]/80 backdrop-blur-md border border-white/60 dark:border-[#84a98c]/25 text-xs font-mono font-semibold text-[#2f3e46] dark:text-[#cad2c5] shadow-sm">
-            <Camera className="w-3.5 h-3.5 text-[#52796f] dark:text-[#84a98c]" />
-            <span>VISUAL MEMORY ARCHIVE • 2024 - 2026</span>
-          </div>
-
           <h1 className="text-4xl sm:text-5xl font-black tracking-tight text-zinc-900 dark:text-white">
             NIRVAN Through <SparklesText className="text-[#2C5745] dark:text-[#EB7D00]">The Years</SparklesText>
           </h1>
@@ -504,13 +499,20 @@ export default function GalleryPage() {
            ========================================================= */}
         <AnimatePresence>
           {activeLightboxIndex !== null && currentLightboxItem && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/85 backdrop-blur-xl">
+            <div 
+              className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 bg-black/90 backdrop-blur-2xl"
+              onClick={() => setActiveLightboxIndex(null)}
+            >
               
-              {/* Close Button */}
+              {/* Top Floating Close Button */}
               <button
                 type="button"
-                onClick={() => setActiveLightboxIndex(null)}
-                className="absolute top-5 right-5 z-20 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setActiveLightboxIndex(null);
+                }}
+                className="absolute top-6 right-6 z-[110] p-3 rounded-full bg-white/15 hover:bg-white/30 text-white transition-all cursor-pointer shadow-lg hover:scale-110"
+                aria-label="Close Lightbox"
               >
                 <X className="w-6 h-6" />
               </button>
@@ -522,7 +524,8 @@ export default function GalleryPage() {
                   e.stopPropagation();
                   setActiveLightboxIndex((prev) => (prev - 1 + filteredItems.length) % filteredItems.length);
                 }}
-                className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all"
+                className="absolute left-4 top-1/2 -translate-y-1/2 z-[110] p-3 rounded-full bg-white/15 hover:bg-white/30 text-white transition-all cursor-pointer hover:scale-110 shadow-lg"
+                aria-label="Previous Photo"
               >
                 <ChevronLeft className="w-6 h-6" />
               </button>
@@ -534,7 +537,8 @@ export default function GalleryPage() {
                   e.stopPropagation();
                   setActiveLightboxIndex((prev) => (prev + 1) % filteredItems.length);
                 }}
-                className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all"
+                className="absolute right-4 top-1/2 -translate-y-1/2 z-[110] p-3 rounded-full bg-white/15 hover:bg-white/30 text-white transition-all cursor-pointer hover:scale-110 shadow-lg"
+                aria-label="Next Photo"
               >
                 <ChevronRight className="w-6 h-6" />
               </button>
@@ -544,9 +548,23 @@ export default function GalleryPage() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
-                className="relative max-w-4xl w-full max-h-[90vh] bg-[#15231c] rounded-3xl overflow-hidden border border-white/20 shadow-2xl flex flex-col"
+                onClick={(e) => e.stopPropagation()}
+                className="relative max-w-4xl w-full max-h-[90vh] bg-[#15231c] rounded-3xl overflow-hidden border border-white/20 shadow-2xl flex flex-col z-[105]"
               >
                 <div className="relative flex-1 bg-black flex items-center justify-center min-h-[300px] max-h-[65vh] overflow-hidden">
+                  {/* Corner Close Button */}
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setActiveLightboxIndex(null);
+                    }}
+                    className="absolute top-4 right-4 z-30 p-2 rounded-full bg-black/60 hover:bg-black/80 text-white backdrop-blur-md transition-all cursor-pointer"
+                    aria-label="Close"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+
                   <img
                     src={currentLightboxItem.src}
                     alt={currentLightboxItem.title}

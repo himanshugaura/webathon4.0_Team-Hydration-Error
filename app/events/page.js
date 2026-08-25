@@ -8,58 +8,157 @@ import { data } from "@/lib/data";
 import { MagicCard } from "@/components/ui/magic-card";
 import { SparklesText } from "@/components/ui/sparkles-text";
 
-// Helper function to assign styling and imagery based on category
-const getEventStyles = (category) => {
-  const styles = {
-    "Hackathon": {
-      image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=2070&auto=format&fit=crop",
+// Helper function to assign styling and real imagery based on event/category
+const getEventStyles = (event) => {
+  const eventMap = {
+    "hacksprint": {
+      image: "/Poster/Hackathon.png",
       badgeColor: "bg-[#2C5745] text-white",
       border: "group-hover:border-[#2C5745]/60"
     },
-    "Competitive Programming": {
-      image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop",
-      badgeColor: "bg-[#EB7D00] text-white",
-      border: "group-hover:border-[#EB7D00]/60"
-    },
-    "Design": {
-      image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=2000&auto=format&fit=crop",
-      badgeColor: "bg-[#AE2448] text-white",
-      border: "group-hover:border-[#AE2448]/60"
-    },
-    "Robotics": {
-      image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=2070&auto=format&fit=crop",
-      badgeColor: "bg-[#AE2448] text-white",
-      border: "group-hover:border-[#AE2448]/60"
-    },
-    "IoT / Hardware": {
-      image: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop",
+    "hackathon": {
+      image: "/Poster/Hackathon.png",
       badgeColor: "bg-[#2C5745] text-white",
       border: "group-hover:border-[#2C5745]/60"
     },
-    "Gaming": {
-      image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=2070&auto=format&fit=crop",
+    "coderush": {
+      image: "/Raw Images/Hackathon/20260418_101029.jpg",
       badgeColor: "bg-[#EB7D00] text-white",
       border: "group-hover:border-[#EB7D00]/60"
     },
-    "Cybersecurity": {
-      image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop",
+    "coding": {
+      image: "/Raw Images/Hackathon/20260418_101029.jpg",
+      badgeColor: "bg-[#EB7D00] text-white",
+      border: "group-hover:border-[#EB7D00]/60"
+    },
+    "ui-ux-arena": {
+      image: "/Raw Images/Hackathon/20260418_110744.jpg",
       badgeColor: "bg-[#AE2448] text-white",
       border: "group-hover:border-[#AE2448]/60"
     },
-    "Adventure": {
-      image: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=2021&auto=format&fit=crop",
+    "design": {
+      image: "/Raw Images/Hackathon/20260418_110744.jpg",
+      badgeColor: "bg-[#AE2448] text-white",
+      border: "group-hover:border-[#AE2448]/60"
+    },
+    "robowar": {
+      image: "/Raw Images/esport/DSC08175.JPG",
+      badgeColor: "bg-[#AE2448] text-white",
+      border: "group-hover:border-[#AE2448]/60"
+    },
+    "robotics": {
+      image: "/Raw Images/esport/DSC08175.JPG",
+      badgeColor: "bg-[#AE2448] text-white",
+      border: "group-hover:border-[#AE2448]/60"
+    },
+    "smart-systems-expo": {
+      image: "/Raw Images/tech treasyre hunt/DSC_0111.jpg",
+      badgeColor: "bg-[#2C5745] text-white",
+      border: "group-hover:border-[#2C5745]/60"
+    },
+    "iot": {
+      image: "/Raw Images/tech treasyre hunt/DSC_0111.jpg",
+      badgeColor: "bg-[#2C5745] text-white",
+      border: "group-hover:border-[#2C5745]/60"
+    },
+    "esports-arena": {
+      image: "/Poster/Esport.png",
       badgeColor: "bg-[#EB7D00] text-white",
       border: "group-hover:border-[#EB7D00]/60"
     },
-    "Workshop": {
-      image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2070&auto=format&fit=crop",
+    "esports": {
+      image: "/Poster/Esport.png",
+      badgeColor: "bg-[#EB7D00] text-white",
+      border: "group-hover:border-[#EB7D00]/60"
+    },
+    "ctf-cyberquest": {
+      image: "/Poster/Ctf.png",
+      badgeColor: "bg-[#AE2448] text-white",
+      border: "group-hover:border-[#AE2448]/60"
+    },
+    "ctf": {
+      image: "/Poster/Ctf.png",
+      badgeColor: "bg-[#AE2448] text-white",
+      border: "group-hover:border-[#AE2448]/60"
+    },
+    "treasure-hunt": {
+      image: "/Poster/Tech treasure hunt.png",
+      badgeColor: "bg-[#EB7D00] text-white",
+      border: "group-hover:border-[#EB7D00]/60"
+    },
+    "treasurehunt": {
+      image: "/Poster/Tech treasure hunt.png",
+      badgeColor: "bg-[#EB7D00] text-white",
+      border: "group-hover:border-[#EB7D00]/60"
+    },
+    "genai-workshop": {
+      image: "/Raw Images/ctf/img4.jpg",
+      badgeColor: "bg-[#2C5745] text-white",
+      border: "group-hover:border-[#2C5745]/60"
+    },
+    "workshop": {
+      image: "/Raw Images/ctf/img4.jpg",
       badgeColor: "bg-[#2C5745] text-white",
       border: "group-hover:border-[#2C5745]/60"
     }
   };
 
-  return styles[category] || {
-    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070&auto=format&fit=crop",
+  const key = typeof event === "string" ? event : (event?.slug || event?.id);
+  if (eventMap[key]) {
+    return eventMap[key];
+  }
+
+  const category = typeof event === "string" ? event : event?.category;
+  const categoryFallback = {
+    "Hackathon": {
+      image: "/Poster/Hackathon.png",
+      badgeColor: "bg-[#2C5745] text-white",
+      border: "group-hover:border-[#2C5745]/60"
+    },
+    "Competitive Programming": {
+      image: "/Raw Images/Hackathon/20260418_101029.jpg",
+      badgeColor: "bg-[#EB7D00] text-white",
+      border: "group-hover:border-[#EB7D00]/60"
+    },
+    "Design": {
+      image: "/Raw Images/Hackathon/20260418_110744.jpg",
+      badgeColor: "bg-[#AE2448] text-white",
+      border: "group-hover:border-[#AE2448]/60"
+    },
+    "Robotics": {
+      image: "/Raw Images/esport/DSC08175.JPG",
+      badgeColor: "bg-[#AE2448] text-white",
+      border: "group-hover:border-[#AE2448]/60"
+    },
+    "IoT / Hardware": {
+      image: "/Raw Images/tech treasyre hunt/DSC_0111.jpg",
+      badgeColor: "bg-[#2C5745] text-white",
+      border: "group-hover:border-[#2C5745]/60"
+    },
+    "Gaming": {
+      image: "/Poster/Esport.png",
+      badgeColor: "bg-[#EB7D00] text-white",
+      border: "group-hover:border-[#EB7D00]/60"
+    },
+    "Cybersecurity": {
+      image: "/Poster/Ctf.png",
+      badgeColor: "bg-[#AE2448] text-white",
+      border: "group-hover:border-[#AE2448]/60"
+    },
+    "Adventure": {
+      image: "/Poster/Tech treasure hunt.png",
+      badgeColor: "bg-[#EB7D00] text-white",
+      border: "group-hover:border-[#EB7D00]/60"
+    },
+    "Workshop": {
+      image: "/Raw Images/ctf/img4.jpg",
+      badgeColor: "bg-[#2C5745] text-white",
+      border: "group-hover:border-[#2C5745]/60"
+    }
+  };
+
+  return categoryFallback[category] || {
+    image: "/Poster/Hackathon.png",
     badgeColor: "bg-[#2C5745] text-white",
     border: "group-hover:border-[#2C5745]/60"
   };
@@ -203,7 +302,7 @@ export default function EventsPage() {
         {/* Events Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredEvents.map((event) => {
-            const styles = getEventStyles(event.category);
+            const styles = getEventStyles(event);
             
             return (
               <MagicCard 

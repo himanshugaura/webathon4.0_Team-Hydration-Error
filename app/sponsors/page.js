@@ -170,11 +170,6 @@ export default function SponsorsPage() {
             HERO & PARTNERSHIP PHILOSOPHY
            ========================================================= */}
         <div className="text-center space-y-5 max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/60 dark:bg-[#15231c]/80 backdrop-blur-md border border-white/60 dark:border-[#84a98c]/25 text-xs font-mono font-semibold text-[#2f3e46] dark:text-[#cad2c5] shadow-sm">
-            <HeartHandshake className="w-3.5 h-3.5 text-[#52796f] dark:text-[#84a98c]" />
-            <span>INDUSTRY PATRONS & PARTNERS • NIRVAN '26</span>
-          </div>
-
           <h1 className="text-4xl sm:text-5xl font-black tracking-tight text-zinc-900 dark:text-white">
             Powering Student <SparklesText className="text-[#2C5745] dark:text-[#EB7D00]">Innovation</SparklesText>
           </h1>

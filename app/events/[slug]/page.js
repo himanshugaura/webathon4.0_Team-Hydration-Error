@@ -39,21 +39,31 @@ function getEventVisual(event) {
     };
   }
 
-  // High quality Unsplash imagery per category
-  const categoryImages = {
-    "Hackathon": "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=2070&auto=format&fit=crop",
-    "Competitive Programming": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop",
-    "Design": "https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=2000&auto=format&fit=crop",
-    "Robotics": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=2070&auto=format&fit=crop",
-    "IoT / Hardware": "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop",
-    "Gaming": "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=2070&auto=format&fit=crop",
-    "Cybersecurity": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop",
-    "Adventure": "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=2021&auto=format&fit=crop",
-    "Workshop": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2070&auto=format&fit=crop",
+  // Real photos from /public/Raw Images
+  const realActionImages = {
+    "coderush": "/Raw Images/Hackathon/20260418_101029.jpg",
+    "coding": "/Raw Images/Hackathon/20260418_101029.jpg",
+    "ui-ux-arena": "/Raw Images/Hackathon/20260418_110744.jpg",
+    "design": "/Raw Images/Hackathon/20260418_110744.jpg",
+    "robowar": "/Raw Images/esport/DSC08175.JPG",
+    "robotics": "/Raw Images/esport/DSC08175.JPG",
+    "smart-systems-expo": "/Raw Images/tech treasyre hunt/DSC_0111.jpg",
+    "iot": "/Raw Images/tech treasyre hunt/DSC_0111.jpg",
+    "genai-workshop": "/Raw Images/ctf/img4.jpg",
+    "workshop": "/Raw Images/ctf/img4.jpg",
+    "Hackathon": "/Poster/Hackathon.png",
+    "Competitive Programming": "/Raw Images/Hackathon/20260418_101029.jpg",
+    "Design": "/Raw Images/Hackathon/20260418_110744.jpg",
+    "Robotics": "/Raw Images/esport/DSC08175.JPG",
+    "IoT / Hardware": "/Raw Images/tech treasyre hunt/DSC_0111.jpg",
+    "Gaming": "/Poster/Esport.png",
+    "Cybersecurity": "/Poster/Ctf.png",
+    "Adventure": "/Poster/Tech treasure hunt.png",
+    "Workshop": "/Raw Images/ctf/img4.jpg",
   };
 
   return {
-    src: categoryImages[event.category] || "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2070&auto=format&fit=crop",
+    src: realActionImages[event.slug] || realActionImages[event.id] || realActionImages[event.category] || "/Poster/Hackathon.png",
     isPoster: false,
   };
 }

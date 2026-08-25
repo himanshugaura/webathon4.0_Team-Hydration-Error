@@ -188,12 +188,6 @@ export default function AboutPage() {
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="text-center space-y-6 max-w-4xl mx-auto"
         >
-          {/* Fest Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/60 dark:bg-[#15231c]/80 backdrop-blur-md border border-white/60 dark:border-[#84a98c]/25 text-xs font-mono font-semibold text-[#2f3e46] dark:text-[#cad2c5] shadow-sm">
-            <Sparkles className="w-3.5 h-3.5 text-[#52796f] dark:text-[#84a98c]" />
-            <span>ANNUAL TECHNICAL FEST • NIRVAN '26</span>
-          </div>
-
           {/* Main Title */}
           <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-zinc-900 dark:text-white leading-tight">
             Where Ideas Become <br className="hidden sm:inline" />
