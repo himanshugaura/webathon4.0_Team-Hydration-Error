@@ -188,7 +188,7 @@ export default function StudentDashboard() {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
               <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-zinc-900 dark:text-white">
-                My <SparklesText className="text-zinc-900 dark:text-white">Registered Events</SparklesText>
+                My <SparklesText className="text-[#2C5745] dark:text-[#EB7D00]">Registered Events</SparklesText>
               </h2>
               <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400">
                 View your schedule, manage team squad members, and access your entry passes.

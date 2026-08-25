@@ -197,7 +197,7 @@ export default function AboutPage() {
           {/* Main Title */}
           <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-zinc-900 dark:text-white leading-tight">
             Where Ideas Become <br className="hidden sm:inline" />
-            <SparklesText className="text-zinc-900 dark:text-white">
+            <SparklesText className="text-[#2C5745] dark:text-[#EB7D00]">
               Innovation & Impact
             </SparklesText>
           </h1>

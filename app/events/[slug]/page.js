@@ -303,7 +303,7 @@ export default async function EventDetailPage({ params }) {
         <MagicCard className="rounded-3xl p-6 sm:p-10 shadow-md flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="text-center md:text-left">
             <h3 className="text-2xl sm:text-3xl font-black text-zinc-900 dark:text-white tracking-tight mb-2">
-              <SparklesText className="text-zinc-900 dark:text-white">{actionPhrase}</SparklesText>
+              <SparklesText className="text-[#2C5745] dark:text-[#EB7D00]">{actionPhrase}</SparklesText>
             </h3>
             <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 font-medium">
               Secure your spot in {event.name} before registrations close.

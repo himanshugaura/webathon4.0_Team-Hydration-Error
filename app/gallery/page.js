@@ -322,7 +322,7 @@ export default function GalleryPage() {
           </div>
 
           <h1 className="text-4xl sm:text-5xl font-black tracking-tight text-zinc-900 dark:text-white">
-            NIRVAN Through <SparklesText className="text-zinc-900 dark:text-white">The Years</SparklesText>
+            NIRVAN Through <SparklesText className="text-[#2C5745] dark:text-[#EB7D00]">The Years</SparklesText>
           </h1>
 
           <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">

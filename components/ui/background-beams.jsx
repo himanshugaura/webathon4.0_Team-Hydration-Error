@@ -83,7 +83,7 @@ export const BackgroundBeams = React.memo(({ className }) => {
         <path
           d={paths[0]}
           stroke="url(#paint0_radial_242_278)"
-          strokeOpacity="0.05"
+          strokeOpacity="1"
           strokeWidth="0.5"
         />
 
@@ -92,7 +92,7 @@ export const BackgroundBeams = React.memo(({ className }) => {
             key={`path-` + index}
             d={path}
             stroke={`url(#linearGradient-${index})`}
-            strokeOpacity="0.35"
+            strokeOpacity="1"
             strokeWidth="0.5"
           />
         ))}
@@ -108,16 +108,17 @@ export const BackgroundBeams = React.memo(({ className }) => {
                 y2: "0%",
               }}
               animate={{
-                x1: ["0%", "100%"],
-                x2: ["0%", "95%"],
-                y1: ["0%", "100%"],
-                y2: ["0%", `${93 + Math.random() * 8}%`],
+                x1: ["0%", "100%", "0%"],
+                x2: ["0%", "95%", "0%"],
+                y1: ["0%", "100%", "0%"],
+                y2: ["0%", `${92 + (index % 8)}%`, "0%"],
               }}
               transition={{
-                duration: Math.random() * 10 + 10,
-                ease: "easeInOut",
+                duration: 8 + (index % 6) * 1.5,
+                ease: "linear",
                 repeat: Infinity,
-                delay: Math.random() * 10,
+                repeatType: "loop",
+                delay: 0,
               }}
             >
               <stop stopColor="#18CCFC" stopOpacity="0" />

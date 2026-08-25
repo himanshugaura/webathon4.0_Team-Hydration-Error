@@ -46,7 +46,7 @@ export function Glimpses() {
       <div className="max-w-7xl mx-auto px-4 pt-16 pb-6">
         <div className="flex flex-col items-center text-center mb-8 space-y-3">
           <h2 className="text-4xl md:text-5xl font-black text-zinc-900 dark:text-white">
-            {data.fest.name} <SparklesText className="text-zinc-900 dark:text-white">Starts In</SparklesText>
+            {data.fest.name} <SparklesText className="text-[#EB7D00]">Starts In</SparklesText>
           </h2>
           <p className="text-zinc-600 dark:text-zinc-400 text-base">
             {data.fest.dates.display} · {data.fest.venue}
@@ -68,7 +68,7 @@ export function Glimpses() {
       <div className="relative z-10 flex flex-col items-center text-center px-4 pb-8">
         <h2 className="max-w-4xl text-4xl font-black leading-tight text-zinc-900 dark:text-white sm:text-5xl">
           The Legacy of{" "}
-          <SparklesText className="text-zinc-900 dark:text-white">
+          <SparklesText className="text-[#2C5745] dark:text-[#EB7D00]">
             NIRVAN
           </SparklesText>
         </h2>

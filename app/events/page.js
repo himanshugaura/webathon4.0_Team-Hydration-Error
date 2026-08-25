@@ -121,7 +121,7 @@ export default function EventsPage() {
         {/* Header */}
         <div className="flex flex-col items-center text-center mb-10 space-y-4">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-zinc-900 dark:text-white">
-            Explore <SparklesText className="text-zinc-900 dark:text-white">Events</SparklesText>
+            Explore <SparklesText className="text-[#2C5745] dark:text-[#EB7D00]">Events</SparklesText>
           </h1>
           <p className="text-lg md:text-xl text-zinc-600 dark:text-zinc-400 max-w-2xl">
             Discover a wide range of exciting technical, non-technical, and gaming events at {data.fest.name}.

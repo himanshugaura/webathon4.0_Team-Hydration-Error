@@ -176,7 +176,7 @@ export default function SponsorsPage() {
           </div>
 
           <h1 className="text-4xl sm:text-5xl font-black tracking-tight text-zinc-900 dark:text-white">
-            Powering Student <SparklesText className="text-zinc-900 dark:text-white">Innovation</SparklesText>
+            Powering Student <SparklesText className="text-[#2C5745] dark:text-[#EB7D00]">Innovation</SparklesText>
           </h1>
 
           <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">

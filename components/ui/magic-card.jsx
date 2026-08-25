@@ -43,6 +43,12 @@ export function MagicCard(props) {
     return currentTheme === "dark";
   }, [theme, systemTheme, mounted]);
 
+  // Soften light mode hover effects
+  const activeGradientColor = isDarkTheme ? gradientColor : "rgba(0, 0, 0, 0.03)";
+  const activeGradientOpacity = isDarkTheme ? gradientOpacity : 0.25;
+  const activeGradientFrom = isDarkTheme ? gradientFrom : "rgba(158, 122, 255, 0.3)";
+  const activeGradientTo = isDarkTheme ? gradientTo : "rgba(254, 139, 187, 0.3)";
+
   const mouseX = useMotionValue(-gradientSize);
   const mouseY = useMotionValue(-gradientSize);
 
@@ -123,8 +129,8 @@ export function MagicCard(props) {
         background: useMotionTemplate`
           linear-gradient(var(--color-background) 0 0) padding-box,
           radial-gradient(${gradientSize}px circle at ${mouseX}px ${mouseY}px,
-            ${gradientFrom},
-            ${gradientTo},
+            ${activeGradientFrom},
+            ${activeGradientTo},
             var(--color-border) 100%
           ) border-box
         `,
@@ -138,11 +144,11 @@ export function MagicCard(props) {
           style={{
             background: useMotionTemplate`
               radial-gradient(${gradientSize}px circle at ${mouseX}px ${mouseY}px,
-                ${gradientColor},
+                ${activeGradientColor},
                 transparent 100%
               )
             `,
-            opacity: gradientOpacity,
+            opacity: activeGradientOpacity,
           }} />
       )}
 
